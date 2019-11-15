@@ -1,0 +1,5 @@
+<ng-template>
+  <tr>
+    <ng-template *ngFor="let col of colunas" [ngTemplateOutlet]="getTemplate(col)"></ng-template>
+  </tr>
+</ng-template>

@@ -1,0 +1,26 @@
+table.tabela {
+    width: 100%;
+}
+
+:host ::ng-deep {
+    .tabela thead,
+    .tabela tbody {
+        th, td {
+            padding: 1em;
+        }
+
+        th {
+            background: #505050;
+            color: #fff;
+        }
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+}

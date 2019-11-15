@@ -1,0 +1,12 @@
+<div class="table-responsive" *ngIf="isComponentesCarregados">
+  <table class="tabela">
+    <thead>
+      <tr>
+        <ng-template *ngFor="let titulo of titulos" [ngTemplateOutlet]="getTemplate(titulo)"></ng-template>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template *ngFor="let linha of linhas" [ngTemplateOutlet]="getTemplate(linha)"></ng-template>
+    </tbody>
+  </table>
+</div>
