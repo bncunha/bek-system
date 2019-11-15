@@ -2,6 +2,11 @@
   <lib-tabela>
     <lib-tb-titulo> Nome </lib-tb-titulo>
     <lib-tb-titulo> Descrição </lib-tb-titulo>
+
+    <lib-tb-row *ngFor="let cat of categorias | async" [link]="'/categoria/edit/' + cat.id" (deletar)="deletar(cat.id)">
+      <lib-tb-col> {{ cat.nome }}</lib-tb-col>
+      <lib-tb-col> {{ cat.descricao }}</lib-tb-col>
+    </lib-tb-row>
   </lib-tabela>
 
 </lib-page-content>

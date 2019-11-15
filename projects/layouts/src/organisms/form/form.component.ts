@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'lib-form',
@@ -7,10 +8,15 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  // @Input() formGroup: FormGroup
-  constructor() { }
+  @Output() salvar = new EventEmitter();
+
+  constructor(private loc: Location) { }
 
   ngOnInit() {
+  }
+
+  cancelar() {
+    this.loc.back();
   }
 
 }

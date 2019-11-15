@@ -16,7 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } f
 })
 export class FormInputComponent implements OnInit, ControlValueAccessor {
   @ViewChild(InputComponent) input: InputComponent;
-  @Input() label: string = 'Nome';
+  @Input() label: string;
   
   isFloating = false;
   idInput: string;

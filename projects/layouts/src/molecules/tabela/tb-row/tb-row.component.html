@@ -1,5 +1,9 @@
 <ng-template>
   <tr>
     <ng-template *ngFor="let col of colunas" [ngTemplateOutlet]="getTemplate(col)"></ng-template>
+    <td>
+      <button class="btn" [routerLink]="link"> <i class="far fa-edit editar"></i> </button>
+      <button class="btn" (click)="deletar.emit()"> <i class="fas fa-trash deletar"></i> </button>
+    </td>
   </tr>
 </ng-template>

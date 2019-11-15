@@ -5,6 +5,8 @@ import { TbTituloComponent } from './tb-titulo/tb-titulo.component';
 import { TbRowComponent } from './tb-row/tb-row.component';
 import { TbColComponent } from './tb-col/tb-col.component';
 import { TableService } from './services/table.service';
+import { AtomsModule } from '../../atoms/atoms.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { TableService } from './services/table.service';
     TbColComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AtomsModule,
+    RouterModule
   ], providers: [
     TableService
   ],

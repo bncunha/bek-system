@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaControllerService } from '../controllers/categoria-controller.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-listar-categoria',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar-categoria.component.scss']
 })
 export class ListarCategoriaComponent implements OnInit {
-
-  constructor() { }
+  categorias: Observable<any>
+  constructor(private categoriaController: CategoriaControllerService) { }
 
   ngOnInit() {
+    this.categorias = this.categoriaController.getAll();
+  }
+
+  deletar(id) {
+    this.categoriaController.delete(id);
   }
 
 }

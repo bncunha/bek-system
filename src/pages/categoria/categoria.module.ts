@@ -5,6 +5,7 @@ import { Routes } from '@angular/router';
 import { ListarCategoriaComponent } from './listar-categoria/listar-categoria.component';
 import { CoreModule } from 'src/core/core.module';
 import { FormCategoriaComponent } from './form-categoria/form-categoria.component';
+import { CategoriaControllerService } from './controllers/categoria-controller.service';
 
 @NgModule({
   declarations: [ListarCategoriaComponent, FormCategoriaComponent],
@@ -12,6 +13,8 @@ import { FormCategoriaComponent } from './form-categoria/form-categoria.componen
     CommonModule,
     CoreModule,
     CategoriaRoutingModule
+  ], providers: [
+    CategoriaControllerService
   ]
 })
 export class CategoriaModule { }

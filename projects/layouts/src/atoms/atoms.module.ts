@@ -7,14 +7,16 @@ import { TituloDoisComponent } from './titulo-dois/titulo-dois.component';
 import { BtnPrimarioComponent } from './btn-primario/btn-primario.component';
 import { InputComponent } from './input/input.component';
 import { LabelComponent } from './label/label.component';
+import { BtnSecundarioComponent } from './btn-secundario/btn-secundario.component';
+import { BtnPerigoComponent } from './btn-perigo/btn-perigo.component';
 
 @NgModule({
-  declarations: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent],
+  declarations: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent]
+  exports: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent]
 })
 export class AtomsModule { }
