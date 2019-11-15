@@ -26,4 +26,9 @@ export class TableService {
       this._waitComponentsInit.next({qtdComponentsCarregados: this.qtdResponsesTotal});
     }
   }
+
+  zerarResponses() {
+    this.qtdResponsesRecebidas = 0;
+    this.qtdResponsesTotal = 0;
+  }
 }

@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PageContentComponent implements OnInit {
   @Input() titulo: string;
-  @Input() showBtn: boolean = true;
   @Input() textoBtn: string = 'Novo';
+  @Input() link: string;
   constructor() { }
 
   ngOnInit() {
