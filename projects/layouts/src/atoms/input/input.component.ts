@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'lib-input',
@@ -8,8 +9,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class InputComponent implements OnInit {
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
+  @Output() change = new EventEmitter();
   @Input() id: string;
-  @Input() value: string;
+
+  value: FormControl = new FormControl();
   constructor() { }
 
   ngOnInit() {

@@ -1,3 +1,20 @@
+:host.ng-invalid.ng-dirty ::ng-deep {
+    lib-input .input-texto {
+        border-color: red
+    }
+    lib-label label {
+        color: red;
+    }
+}
+:host.ng-valid.ng-dirty ::ng-deep {
+    lib-input .input-texto {
+        border-color: green
+    }
+    lib-label label {
+        color: green;
+    }
+}
+
 .input-group {
     position: relative;
 }

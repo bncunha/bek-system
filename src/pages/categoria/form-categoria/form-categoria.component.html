@@ -1,3 +1,7 @@
 <lib-page-content titulo="Adicionar categoria">
-  <lib-form-input></lib-form-input>
+  <lib-form [formGroup]="form">
+    <div class="col-12">
+      <lib-form-input formControlName="nome"></lib-form-input>
+    </div>
+  </lib-form>
 </lib-page-content>

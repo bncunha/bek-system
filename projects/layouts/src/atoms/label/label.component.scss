@@ -1,0 +1,8 @@
+:host {
+    &.valid label {
+        color: green;
+    }
+    &.invalid label {
+        color: red;
+    }
+}

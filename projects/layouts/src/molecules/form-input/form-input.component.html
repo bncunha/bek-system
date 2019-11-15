@@ -1,4 +1,5 @@
 <div class="input-group">
-  <lib-label [class.float]="isFloating" [for]="idInput"> {{ label }} </lib-label>
-  <lib-input (focus)="detectFloat('FOCUS')" (blur)="detectFloat('BLUR')" [id]="idInput"></lib-input>
+  <lib-label [class.valid]="valid == true" [class.invalid]="valid == false" [class.float]="isFloating" [for]="idInput"> {{ label }} </lib-label>
+  <lib-input [class.valid]="valid == true" [class.invalid]="valid == false" (focus)="detectFloat('FOCUS')" (blur)="detectFloat('BLUR')" [id]="idInput"></lib-input>
+  <span> {{ erroMsg }}</span>
 </div>

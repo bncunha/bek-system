@@ -5,15 +5,19 @@ import { AtomsModule } from '../atoms/atoms.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PageContentComponent } from './page-content/page-content.component';
 import { RouterModule } from '@angular/router';
+import { FormComponent } from './form/form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [SidebarComponent, PageContentComponent],
+  declarations: [SidebarComponent, PageContentComponent, FormComponent],
   imports: [
     CommonModule,
     AtomsModule,
     MoleculesModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  exports: [SidebarComponent, PageContentComponent]
+  exports: [SidebarComponent, PageContentComponent, FormComponent]
 })
 export class OrganismsModule { }

@@ -1,3 +1,12 @@
+:host {
+    &.valid input {
+        border-color: green;
+    }
+    &.invalid input {
+        border-color: red;
+    }
+}
+
 input.input-texto {
     width: 100%;
     padding: 1em 0 0.1em 0em;

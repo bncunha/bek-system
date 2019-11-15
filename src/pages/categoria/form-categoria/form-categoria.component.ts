@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-categoria',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-categoria.component.scss']
 })
 export class FormCategoriaComponent implements OnInit {
-
+  @Input() form = new FormGroup({
+    nome: new FormControl(null, [Validators.required])
+  });
   constructor() { }
 
   ngOnInit() {
