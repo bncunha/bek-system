@@ -7,11 +7,10 @@
 
   <div class="menu-list">
     <ul>
-      <li> 
-        <a href="">
-          <i class="fas fa-boxes"></i> Estoque 
+      <li *ngFor="let menu of menus" class="mb-3"> 
+        <a [routerLink]="menu.link">
+          <i [class]="menu.icon"></i> {{ menu.nome }} 
         </a>
-
       </li>
     </ul>
   </div>

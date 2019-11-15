@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'bek-system';
+  menuSideBar = [
+    {icon: 'fas fa-boxes', link: '/estoque', nome: 'Estoque'},
+    {icon: "fas fa-object-group", link: '/categoria', nome: 'Categorias'}
+  ]
 }

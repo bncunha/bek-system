@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-principal-template',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./principal-template.component.scss']
 })
 export class PrincipalTemplateComponent implements OnInit {
-
+  @Input() menuSidebar: any[]
   constructor() { }
 
   ngOnInit() {
