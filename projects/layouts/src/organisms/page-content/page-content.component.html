@@ -1,5 +1,8 @@
 <lib-card>
-  <lib-titulo-dois *ngIf="titulo" > {{ titulo }} </lib-titulo-dois>
+  <div class="wrapper">
+    <lib-titulo-dois *ngIf="titulo">  {{ titulo }} </lib-titulo-dois>
+    <lib-btn-primario> {{ textoBtn }} </lib-btn-primario>
+  </div>
   <hr *ngIf="titulo"/>
   <ng-content></ng-content>
 </lib-card>
