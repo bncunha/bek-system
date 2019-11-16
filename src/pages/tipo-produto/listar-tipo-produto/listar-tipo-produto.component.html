@@ -1,0 +1,12 @@
+<lib-page-content titulo="Lista de tipos de produto" link="/tipo-produto/add">
+  <lib-tabela>
+    <lib-tb-titulo> Nome </lib-tb-titulo>
+    <lib-tb-titulo> Descrição </lib-tb-titulo>
+
+    <lib-tb-row *ngFor="let tipo of tipos | async" [link]="'/tipo-produto/edit/' + tipo.id" (deletar)="deletar(tipo.id)">
+      <lib-tb-col> {{ tipo.nome }}</lib-tb-col>
+      <lib-tb-col> {{ tipo.descricao }}</lib-tb-col>
+    </lib-tb-row>
+  </lib-tabela>
+
+</lib-page-content>
