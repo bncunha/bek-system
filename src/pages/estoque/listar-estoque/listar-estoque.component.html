@@ -1,28 +1,14 @@
 
 <lib-page-content titulo="Lista de produtos" link="/estoque/add">
   <lib-tabela>
-    <lib-tb-titulo> Nome </lib-tb-titulo>
-    <lib-tb-titulo> Sobrenome </lib-tb-titulo>
-    <lib-tb-titulo> Aeeee </lib-tb-titulo>
-    <lib-tb-titulo> Aeeee </lib-tb-titulo>
+    <lib-tb-titulo> Descrição </lib-tb-titulo>
+    <lib-tb-titulo> Quantidade </lib-tb-titulo>
+    <lib-tb-titulo> Tipo de produto </lib-tb-titulo>
 
-    <lib-tb-row>
-      <lib-tb-col> testando </lib-tb-col>
-      <lib-tb-col> testando2 </lib-tb-col>
-      <lib-tb-col> testando3 </lib-tb-col>
-      <lib-tb-col> testando4 </lib-tb-col>
-    </lib-tb-row>
-    <lib-tb-row>
-      <lib-tb-col> testando </lib-tb-col>
-      <lib-tb-col> testando2 </lib-tb-col>
-      <lib-tb-col> testando3 </lib-tb-col>
-      <lib-tb-col> testando4 </lib-tb-col>
-    </lib-tb-row>
-    <lib-tb-row>
-      <lib-tb-col> testando </lib-tb-col>
-      <lib-tb-col> testando2 </lib-tb-col>
-      <lib-tb-col> testando3 </lib-tb-col>
-      <lib-tb-col> testando4 </lib-tb-col>
+    <lib-tb-row *ngFor="let produto of items | async">
+      <lib-tb-col> {{ produto.nome }} </lib-tb-col>
+      <lib-tb-col> {{ produto.quantidade }} </lib-tb-col>
+      <lib-tb-col> {{ produto.tipoProduto }} </lib-tb-col>
     </lib-tb-row>
   </lib-tabela>
 </lib-page-content>

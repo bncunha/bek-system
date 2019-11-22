@@ -7,6 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "compodoc": "npx compodoc -p src/tsconfig.app.json -d documentation/bek-sytem",
+    "compodoc-layout": "npx compodoc -p projects/layouts/tsconfig.lib.json -d documentation/layouts",
     "e2e": "ng e2e"
   },
   "private": true,

@@ -1,0 +1,15 @@
+lib-label {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.2s ease;
+}
+
+lib-label.float {
+    bottom: 22px;
+    color: #888888;
+}
+
+:host {
+    display: block;
+}
