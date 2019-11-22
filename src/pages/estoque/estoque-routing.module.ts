@@ -6,7 +6,8 @@ import { FormEstoqueComponent } from './form-estoque/form-estoque.component';
 
 const routes: Routes = [
   { path: '', component: ListarEstoqueComponent },
-  { path: 'add', component: FormEstoqueComponent }
+  { path: 'add', component: FormEstoqueComponent },
+  { path: 'edit/:id', component: FormEstoqueComponent }
 ]
 
 @NgModule({

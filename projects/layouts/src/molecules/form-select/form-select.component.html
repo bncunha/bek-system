@@ -1,4 +1,4 @@
 <div class="input-group mb-4">
-  <lib-label [class.valid]="valid == true" [class.invalid]="valid == false" [class.float]="isFloating" [for]="idInput"> {{ label }} </lib-label>
+  <lib-label [class.float]="isFloating" [for]="idInput"> {{ label }} </lib-label>
   <lib-select [items]="data" [id]="idInput" [labelBind]="bindLabel" [attrBind]="bindValue" (focus)="detectFloat('FOCUS')" (blur)="detectFloat('BLUR')" ></lib-select>
 </div>

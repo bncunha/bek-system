@@ -5,7 +5,7 @@
     <lib-tb-titulo> Quantidade </lib-tb-titulo>
     <lib-tb-titulo> Tipo de produto </lib-tb-titulo>
 
-    <lib-tb-row *ngFor="let produto of items | async">
+    <lib-tb-row *ngFor="let produto of items | async" (deletar)="deletar(produto.id)" [link]="'/estoque/edit/' + produto.id">
       <lib-tb-col> {{ produto.nome }} </lib-tb-col>
       <lib-tb-col> {{ produto.quantidade }} </lib-tb-col>
       <lib-tb-col> {{ produto.tipoProduto }} </lib-tb-col>

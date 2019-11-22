@@ -14,6 +14,7 @@ export class ListarEstoqueComponent extends BaseListCrud implements OnInit {
    }
 
   ngOnInit() {
+    this.getAll();
   }
 
 }

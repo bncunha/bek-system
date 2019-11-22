@@ -11,6 +11,7 @@ export class BaseService {
     async insert(model: any) {
         try {
             const res = await this.db.list(this.firebaseKey).push(model);
+            console.log('Inserido', res);
             return new DefaultResponse().success('Inserido com sucesso!');
         } catch(err) {
             return new DefaultResponse().error('Erro ao inserir', err);

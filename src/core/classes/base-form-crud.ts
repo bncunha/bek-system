@@ -2,6 +2,7 @@ import { Injector } from '@angular/core';
 import { BaseController } from './base-controller';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Form } from './form.interface';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export class BaseFormCrud {
     id: string;
@@ -25,6 +26,19 @@ export class BaseFormCrud {
     }
 
     async submit() {
+        console.log('Submit')
+        this.validateFormControls(this.form);
         this.id ? await this.controller.update(this.form, this.id) : await this.controller.insert(this.form);
+    }
+
+    private validateFormControls(form: FormGroup) {
+        Object.keys(form.controls).forEach(key => {
+            if(form.controls[key] instanceof FormControl) {
+                // new FormControl().markAsTouched
+                form.controls[key].markAsDirty();
+            } else {
+                this.validateFormControls(form[key]);
+            }
+        })
     }
 }

@@ -2,7 +2,7 @@
     <lib-form [formGroup]="form" (salvar)="submit()">
         <lib-form-input class="col-12" label="Descrição" formControlName="nome"></lib-form-input>
         <lib-form-input class="col-6" label="Quantidade" formControlName="quantidade"></lib-form-input>
-
-        <lib-form-select [data]="tiposProduto | async" bindValue="id" bindLabel="nome" label="Tipo de produto" class="col-12"></lib-form-select>
+        <lib-form-select class="col-6" label="Tipo de produto" formControlName="tipoProduto" [data]="tiposProduto | async" 
+        bindValue="id" bindLabel="nome"></lib-form-select>
     </lib-form>
 </lib-page-content>

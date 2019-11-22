@@ -1,3 +1,20 @@
+:host.ng-invalid.ng-dirty ::ng-deep {
+    lib-select select {
+        border-color: red
+    }
+    lib-label label {
+        color: red;
+    }
+}
+:host.ng-valid.ng-dirty ::ng-deep {
+    lib-select select {
+        border-color: green
+    }
+    lib-label label {
+        color: green;
+    }
+}
+
 lib-label {
     pointer-events: none;
     position: absolute;
