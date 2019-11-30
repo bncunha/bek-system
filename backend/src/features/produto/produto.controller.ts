@@ -1,6 +1,5 @@
 import { Controller, Post } from '@nestjs/common';
 import { ProdutoService } from './produto.service';
-import { DefaultController } from 'src/defaults/DefaultController.class';
 import { Produto } from 'src/entities/Produto.entity';
 
 @Controller('produto')

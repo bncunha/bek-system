@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from './configs/config.module';
 import { ProdutoModule } from './features/produto/produto.module';
 import { TypeormConfigService } from './configs/services/typeorm-config/typeorm-config.service';
+import { FeaturesModule } from './features/features.module';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { TypeormConfigService } from './configs/services/typeorm-config/typeorm-
       useExisting: TypeormConfigService,
     }),
     ConfigModule,
-    ProdutoModule
+    FeaturesModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -13,8 +13,8 @@ export class CorProduto extends DefaultEntity {
     @Column({nullable: true})
     hex: string;
 
-    @ManyToOne(type => Produto, produto => produto.cores)
-    produto: Produto;
+    @OneToMany(type => Produto, produto => produto.cor)
+    produtos: Produto[];
 
     getId() {
         return this.idCorProduto;
