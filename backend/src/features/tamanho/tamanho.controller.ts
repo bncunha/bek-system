@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { TamanhoDTO } from './dto/CriarTamanhoDTO';
 import { DefaultResponse } from 'src/defaults/DefaultResponse.class';
-import { DefaultController } from 'src/defaults/DefaultController.int';
 import { Tamanho } from 'src/entities/Tamanho.entity';
 import { TamanhoService } from './tamanho.service';
 
