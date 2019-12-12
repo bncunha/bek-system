@@ -14,6 +14,12 @@ export class DefaultService<M> {
         return this.repository.find();
     }
 
+    async findOneByID(id: number): Promise<M> {
+        const finded = await this.repository.findByIds([id]);
+        if (!finded[0]) throw new Error('Não foi encontrado objeto com este ID');
+        return finded[0];
+    }
+
     findByID(ids: number[]): Promise<M[]> {
         return this.repository.findByIds(ids);
     }

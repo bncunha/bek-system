@@ -1,6 +1,4 @@
 import { Post, Body, Get, Put, Param, Delete } from "@nestjs/common";
-import { TamanhoDTO } from "src/features/tamanho/dto/CriarTamanhoDTO";
-import { Tamanho } from "src/entities/Tamanho.entity";
 import { DefaultResponse } from "./DefaultResponse.class";
 import { DefaultService } from "./DefaultService.class";
 
@@ -14,7 +12,7 @@ export class DefaultController<M> {
             const model = Object.assign({}, modelDTO);
             return new DefaultResponse().ok(await this.service.criar(model))
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao criar novo tamanho");
+            return new DefaultResponse().error(err, "Erro ao criar novo objeto");
         }
     }
 
@@ -23,7 +21,7 @@ export class DefaultController<M> {
             const model = Object.assign({}, modelDTO);
             return new DefaultResponse().ok(await this.service.update(id, model));
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao atualizar os tamanhos");
+            return new DefaultResponse().error(err, "Erro ao atualizar objeto");
         }
     }
 
@@ -32,16 +30,16 @@ export class DefaultController<M> {
         try {
             return new DefaultResponse().ok(await this.service.getAll());
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao recuperar todos os tamanho");
+            return new DefaultResponse().error(err, "Erro ao recuperar todos os objetos");
         }
     }
 
     @Get(':id')
     async findById(@Param('id') id: number) {
         try {
-            return new DefaultResponse().ok(await this.service.findByID([id]));
+            return new DefaultResponse().ok(await this.service.findOneByID(id));
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao recuperar todos os tamanho");
+            return new DefaultResponse().error(err, "Erro ao recuperar objeto pelo id");
         }
     }
     

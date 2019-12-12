@@ -1,32 +1,29 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { ProdutoService } from './produto.service';
 import { Produto } from 'src/entities/Produto.entity';
+import { DefaultController } from 'src/defaults/DefaultController.class';
+import { ProdutoDTO } from './dto/ProdutoDTO.dto';
 
 @Controller('produto')
-export class ProdutoController {
+export class ProdutoController extends DefaultController<Produto> {
 
-    constructor(private produtoService: ProdutoService) {
+    constructor(service: ProdutoService) {
+        super(service);
     }
-
-    findAll() {
-        throw new Error("Method not implemented.");
-    }
-    getOne() {
-        throw new Error("Method not implemented.");
-    }
-
-    @Post()
-    async create() {
-        const produto = new Produto();
-        produto.nome = 'Produto teste';
-        return await this.produtoService.create(produto);
-    }
-
-    update() {
-        throw new Error("Method not implemented.");
-    }
-    delete() {
-        throw new Error("Method not implemented.");
-    }
+    
+    // @Post()
+    // async create(@Body() produtoDTO: ProdutoDTO) {
+    //     const cor =
+    //     tipoProduto.tamanhos = tamanhos;
+    //     return super.create(tipoProduto);
+    // }
+    
+    // @Put(':id')
+    // async update(@Param('id') id: number, @Body() tipoProdutoDTO: TipoProdutoDTO) {
+    //     const tamanhos: Tamanho[] = await this.tamanhoService.findByIDs(tipoProdutoDTO.tamanhos);
+    //     let tipoProduto: TipoProduto = Object.assign(new TipoProduto(), tipoProdutoDTO);
+    //     tipoProduto.tamanhos = tamanhos;
+    //     return super.update(id, tipoProduto);
+    // }
 
 }
