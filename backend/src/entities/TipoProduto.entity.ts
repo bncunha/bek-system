@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne, OneToMany } from "typeorm";
 import { DefaultEntity } from "src/defaults/DefaultEntity.class";
 import { type } from "os";
 import { Tamanho } from "./Tamanho.entity";
@@ -19,7 +19,7 @@ export class TipoProduto extends DefaultEntity {
     @JoinTable()
     tamanhos: Tamanho[];
 
-    @ManyToOne(type => Produto, produto => produto.tipoProduto)
+    @OneToMany(type => Produto, produto => produto.tipoProduto)
     produtos: Produto[];
 
     getId() {

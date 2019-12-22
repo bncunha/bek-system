@@ -18,7 +18,7 @@ export class Produto extends DefaultEntity{
     @ManyToOne(type => CorProduto, cor => cor.produtos)
     cor: CorProduto;
 
-    @OneToMany(type => TipoProduto, tipo => tipo.produtos)
+    @ManyToOne(type => TipoProduto, tipo => tipo.produtos)
     tipoProduto: TipoProduto
 
     @OneToMany(type => ProdutoHasTamanho, pt => pt.produto)
