@@ -9,5 +9,5 @@ export class TipoProdutoService extends DefaultService<TipoProduto> {
 
     constructor(
         @InjectRepository(TipoProduto) repository: Repository<TipoProduto>
-    ) { super(repository); }
+    ) { super(repository, ['tamanhos']); }
 }

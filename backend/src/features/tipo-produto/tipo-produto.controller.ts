@@ -17,17 +17,21 @@ export class TipoProdutoController extends DefaultController<TipoProduto>{
 
     @Post()
     async create(@Body() tipoProdutoDTO: TipoProdutoDTO) {
-        const tamanhos: Tamanho[] = await this.tamanhoService.findByIDs(tipoProdutoDTO.tamanhos);
         let tipoProduto: TipoProduto = Object.assign(new TipoProduto(), tipoProdutoDTO);
-        tipoProduto.tamanhos = tamanhos;
+        if (tipoProdutoDTO.tamanhos) {
+            const tamanhos: Tamanho[] = await this.tamanhoService.findByIDs(tipoProdutoDTO.tamanhos);
+            tipoProduto.tamanhos = tamanhos;
+        }
         return super.create(tipoProduto);
     }
     
     @Put(':id')
     async update(@Param('id') id: number, @Body() tipoProdutoDTO: TipoProdutoDTO) {
-        const tamanhos: Tamanho[] = await this.tamanhoService.findByIDs(tipoProdutoDTO.tamanhos);
         let tipoProduto: TipoProduto = Object.assign(new TipoProduto(), tipoProdutoDTO);
-        tipoProduto.tamanhos = tamanhos;
+        if (tipoProdutoDTO.tamanhos) {
+            const tamanhos: Tamanho[] = await this.tamanhoService.findByIDs(tipoProdutoDTO.tamanhos);
+            tipoProduto.tamanhos = tamanhos;
+        }
         return super.update(id, tipoProduto);
     }
 

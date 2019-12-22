@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class TipoProdutoService extends BaseService {
+export class TamanhoService extends BaseService {
 
   constructor(http: HttpClient) { 
-    super('tipo-produto', http);
+    super('tamanho', http);
   }
 }

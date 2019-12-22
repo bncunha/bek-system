@@ -5,9 +5,10 @@ import { Form } from './form.interface';
 import { FormGroup, FormControl } from '@angular/forms';
 
 export class BaseFormCrud {
-    id: string;
+    id: number;
     model: any;
-    form: any;
+    form: FormGroup;
+    formFactory: Form<any>;
 
     private route: ActivatedRoute
     constructor(
@@ -19,9 +20,13 @@ export class BaseFormCrud {
 
     init(formFactory) {
         this.id = this.route.snapshot.params['id'];
+        this.formFactory = formFactory;
         this.form = formFactory.createForm({});
         if (this.id) {
-            this.controller.getOne(this.id).subscribe(r => this.form.patchValue(r.data))
+            this.controller.getOne(this.id).subscribe(r => this.formFactory.updateForm(this.form, r.data));
+            setTimeout(() => {
+                console.log(this.form)
+            }, 2000);
         }
     }
 

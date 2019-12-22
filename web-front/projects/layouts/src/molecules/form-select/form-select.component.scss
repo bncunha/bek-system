@@ -1,3 +1,9 @@
+:host.multiple {
+    lib-label {
+        top: -15px;
+    }
+}
+
 :host.ng-invalid.ng-dirty ::ng-deep {
     lib-select select {
         border-color: red

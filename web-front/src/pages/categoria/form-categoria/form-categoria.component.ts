@@ -22,14 +22,14 @@ export class FormCategoriaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    if (this.id) {
-      this.categoriaController.getOne(this.id).subscribe(r => this.form.patchValue(r.data))
-    }
+    // this.id = this.route.snapshot.params['id'];
+    // if (this.id) {
+    //   this.categoriaController.getOne(this.id).subscribe(r => this.form.patchValue(r.data))
+    // }
   }
 
   async submit() {
-    this.id ? await this.categoriaController.update(this.form, this.id) : await this.categoriaController.insert(this.form);
+    // this.id ? await this.categoriaController.update(this.form, this.id) : await this.categoriaController.insert(this.form);
   }
 
 }

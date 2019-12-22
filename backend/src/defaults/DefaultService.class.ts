@@ -1,10 +1,14 @@
 import { Repository } from "typeorm";
 
 export class DefaultService<M> {
+    populateEntities: string[];
     
     constructor(
-        private repository: Repository<M>
-    ){}
+        private repository: Repository<M>,
+        populateEntities?: string[]
+    ){
+        this.populateEntities = populateEntities;
+    }
 
     criar(model: M): Promise<M> {
         return this.repository.save(model);
@@ -15,13 +19,13 @@ export class DefaultService<M> {
     }
 
     async findOneByID(id: number): Promise<M> {
-        const finded = await this.repository.findByIds([id]);
+        const finded = await this.findByID([id]);
         if (!finded[0]) throw new Error('Não foi encontrado objeto com este ID');
         return finded[0];
     }
 
     findByID(ids: number[]): Promise<M[]> {
-        return this.repository.findByIds(ids);
+        return this.repository.findByIds(ids, {relations: this.populateEntities});
     }
 
     async update(id: number, mdoel: M): Promise<M> {

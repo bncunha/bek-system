@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { BaseController } from 'src/core/classes/base-controller';
 import { TipoProdutoService } from 'src/services/tipo-produto.service';
 

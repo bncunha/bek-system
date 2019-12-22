@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
 
+  backEndUrl: 'http://localhost:3000',
+
   firebase: {
     apiKey: "AIzaSyCcCx8o6s9NI2BqvRkseieiaM6FCGKph-Y",
     authDomain: "bek-project.firebaseapp.com",

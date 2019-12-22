@@ -7,7 +7,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class ProdutoService extends BaseService {
 
-  constructor(db: AngularFireDatabase) { 
-    super(db, 'produtos')
+  constructor() { 
+    super('produtos', null);
   }
 }

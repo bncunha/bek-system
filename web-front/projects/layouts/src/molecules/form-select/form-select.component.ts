@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, ViewChild, HostBinding } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SelectComponent } from '../../atoms/select/select.component';
 
@@ -20,6 +20,9 @@ export class FormSelectComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() bindLabel: string;
   @Input() bindValue: string;
+
+  @HostBinding('class.multiple')
+  @Input() multi: boolean = false;
   
   isFloating: boolean = false;
   idInput: string;

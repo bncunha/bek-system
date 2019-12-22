@@ -1,56 +1,35 @@
-import { AngularFireDatabase } from '@angular/fire/database';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 import { DefaultResponse } from './default-response';
-import { map } from 'rxjs/operators';
+import { Injectable, Optional } from '@angular/core';
 
 export class BaseService {
-    firebaseKey: string;
-    constructor(private db: AngularFireDatabase, firebaseKey: string) {
-        this.firebaseKey = firebaseKey;
+    databaseKey: string;
+    http: HttpClient;
+
+    constructor(databaseKey: string, http: HttpClient ) {
+        this.databaseKey = databaseKey;
+        this.http = http;
     }   
 
     async insert(model: any) {
-        try {
-            const res = await this.db.list(this.firebaseKey).push(model);
-            console.log('Inserido', res);
-            return new DefaultResponse().success('Inserido com sucesso!');
-        } catch(err) {
-            return new DefaultResponse().error('Erro ao inserir', err);
-        }
+        return this.http.post<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}`, model);
     }
 
-    async update(model: any, id: string) {
-        try {
-            const res = await this.db.list(this.firebaseKey).update(id, model);
-            return new DefaultResponse().success('Atualizado com sucesso!');
-        } catch(err) {
-            return new DefaultResponse().error('Erro ao Atualizar', err);
-        }
+    update(model: any, id: number): Observable<DefaultResponse> {
+        return this.http.put<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}/${id}`, model);
     }
 
-    async delete(id: string) {
-        try {
-            const res = await this.db.object(`${this.firebaseKey}/${id}`).remove();
-            console.log(res);
-            return new DefaultResponse().success('Removido com sucesso!');            
-        } catch(err) {
-            return new DefaultResponse().error('Erro ao remover', err);
-        }
+    delete(id: number) {
+        return this.http.delete<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}/${id}`);
     }
 
-    getAll() {
-        return this.db.list(this.firebaseKey).snapshotChanges().pipe(
-            map(changes => {
-                return changes.map(c => ({ id: c.payload.key, ...c.payload.val() }));
-            })
-        );
+    getAll(): Observable<DefaultResponse> {
+        return this.http.get<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}`);
     }
 
-    findById(id: string) {
-        return this.db.object(`${this.firebaseKey}/${id}`).snapshotChanges().pipe(
-            map(c => {
-                let newObj = { id: c.payload.key, ...c.payload.val() };
-                return new DefaultResponse().success('Recuperado com sucesso', newObj);
-            })
-        );
+    findById(id: number): Observable<DefaultResponse> {
+        return this.http.get<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}/${id}`);
     }
 }

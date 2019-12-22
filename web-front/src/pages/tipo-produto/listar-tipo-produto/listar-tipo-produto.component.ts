@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { TipoProdutoControllerService } from '../controllers/tipo-produto-controller.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ListarTipoProdutoComponent implements OnInit {
   }
 
   deletar(id) {
-    this.tipoProdutoController.delete(id);
+    this.tipoProdutoController.delete(id).subscribe(r => this.tipos = this.tipoProdutoController.getAll());
   }
 
 

@@ -1,4 +1,5 @@
 <div class="input-group mb-4">
   <lib-label [class.float]="isFloating" [for]="idInput"> {{ label }} </lib-label>
-  <lib-select [items]="data" [id]="idInput" [labelBind]="bindLabel" [attrBind]="bindValue" (focus)="detectFloat('FOCUS')" (blur)="detectFloat('BLUR')" ></lib-select>
+  <lib-select [multi]="multi" [items]="data" [id]="idInput" [labelBind]="bindLabel" [attrBind]="bindValue" (focus)="detectFloat('FOCUS')" (blur)="detectFloat('BLUR')" ></lib-select>
+  <small *ngIf="multi"> Aperte ctrl para selecionar mais de uma opção </small>
 </div>
