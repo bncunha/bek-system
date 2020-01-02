@@ -18,7 +18,7 @@ export class TabelaComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private tableService: TableService
   ) { }
-
+  
   ngOnInit() {
   }
   

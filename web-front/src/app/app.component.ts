@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   menuSideBar = [
     {icon: 'fas fa-boxes', link: '/estoque', nome: 'Estoque'},
-    {icon: "fas fa-object-group", link: '/categoria', nome: 'Categorias'},
     {icon: "fas fa-clipboard-list", link: "", nome: "Cadastros Básicos", showSub: false,submenus: [
       {icon: "", link: '/cor', nome: 'Cores'},
       {icon: "", link: '/tamanho', nome: 'Tamanhos'},

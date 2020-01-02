@@ -22,7 +22,7 @@ export class TableService {
   }
   
   validarTodosComponentsCarregados() {
-    if (this.qtdResponsesRecebidas == this.qtdResponsesTotal) {
+    if (this.qtdResponsesRecebidas >= this.qtdResponsesTotal) {
       this._waitComponentsInit.next({qtdComponentsCarregados: this.qtdResponsesTotal});
     }
   }
