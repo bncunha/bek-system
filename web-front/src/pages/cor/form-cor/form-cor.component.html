@@ -1,0 +1,6 @@
+<lib-page-content titulo="Adicionar cor">
+  <lib-form [formGroup]="form" (salvar)="submit()">
+    <lib-form-input class="col-6" label="Nome da cor" formControlName="nome"></lib-form-input>
+    <lib-form-input class="col-6" label="Código da cor" formControlName="hex"></lib-form-input>
+  </lib-form>
+</lib-page-content>

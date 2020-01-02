@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 export class BaseFormCrud {
     id: number;
     model: any;
-    models: Observable<any[]>;
     form: FormGroup;
     formFactory: Form<any>;
 
@@ -62,13 +61,4 @@ export class BaseFormCrud {
         })
     }
 
-    getListaItens() {
-        this.models = this.controller.getAll();
-    }
-
-    deletar(id: number) {
-        this.controller.delete(id).subscribe(r => this.getListaItens(), err => {
-            this.modalService.open(2, null, 'Erro ao deletar!', err.message);
-        });
-    }
 }

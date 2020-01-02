@@ -1,17 +1,22 @@
 import { BaseController } from './base-controller';
 import { Observable } from 'rxjs';
+import { ModalResponseService } from 'projects/layouts/src/molecules/modal-response/modal-response.service';
+import { Injector } from '@angular/core';
 
 export class BaseListCrud {
-  items: Observable<any>;
-
-  constructor(private controller: BaseController) { }
+  models: Observable<any>;
+  private modalService: ModalResponseService;
+  constructor(private controller: BaseController, private injector: Injector) { 
+    this.modalService = injector.get(ModalResponseService);
+  }
 
   getAll() {
-    this.items = this.controller.getAll();
+    this.models = this.controller.getAll();
   }
 
-  deletar(id) {
-    console.log('Deletar');
-    this.controller.delete(id);
-  }
+  deletar(id: number) {
+    this.controller.delete(id).subscribe(r => this.getAll(), err => {
+        this.modalService.open(2, null, 'Erro ao deletar!', err.message);
+    });
+}
 }

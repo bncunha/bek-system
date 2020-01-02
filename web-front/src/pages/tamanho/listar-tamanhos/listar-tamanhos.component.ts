@@ -3,13 +3,14 @@ import { BaseFormCrud } from 'src/core/classes/base-form-crud';
 import { TamanhoController } from '../controllers/tamanho-controller.service';
 import { Tamanho } from 'src/models/Tamanho.model';
 import { Observable } from 'rxjs';
+import { BaseListCrud } from 'src/core/classes/base-list.crud';
 
 @Component({
   selector: 'app-listar-tamanhos',
   templateUrl: './listar-tamanhos.component.html',
   styleUrls: ['./listar-tamanhos.component.scss']
 })
-export class ListarTamanhosComponent extends BaseFormCrud implements OnInit {
+export class ListarTamanhosComponent extends BaseListCrud implements OnInit {
 
   constructor(
     tamanhoController: TamanhoController,
@@ -19,7 +20,7 @@ export class ListarTamanhosComponent extends BaseFormCrud implements OnInit {
    }
 
   ngOnInit() {
-    this.getListaItens();
+    this.getAll();
   }
 
 }

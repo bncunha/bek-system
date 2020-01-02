@@ -1,0 +1,12 @@
+<lib-page-content titulo="Lista de cores" link="/cor/add">
+  <lib-tabela>
+    <lib-tb-titulo> Nome </lib-tb-titulo>
+    <lib-tb-titulo> Código </lib-tb-titulo>
+
+    <lib-tb-row *ngFor="let model of models | async" [link]="'/cor/edit/' + model.idCorProduto" (deletar)="deletar(model.idCorProduto)">
+      <lib-tb-col> {{ model.nome }}</lib-tb-col>
+      <lib-tb-col> {{ model.hex }}</lib-tb-col>
+    </lib-tb-row>
+  </lib-tabela>
+
+</lib-page-content>
