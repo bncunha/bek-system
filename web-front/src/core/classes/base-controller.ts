@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
-import { of, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { of, Observable, throwError } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 import { BaseService } from './base-service';
 import { DefaultResponse } from './default-response';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -37,7 +37,11 @@ export class BaseController {
     }
 
     delete(id: number) {
-        return this.baseService.delete(id).pipe(tap(r => this.getAll()));
+        return this.baseService.delete(id).pipe(
+            catchError(err => {
+                return throwError((new DefaultResponse().error(err.error.message)));
+            })
+        );
     }
 
     getAll(): Observable<any[]> {

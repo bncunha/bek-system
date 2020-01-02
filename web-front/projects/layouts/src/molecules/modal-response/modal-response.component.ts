@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ModalComponent } from '../../atoms/modal/modal.component';
 import { ModalResponseService } from './modal-response.service';
 
@@ -9,6 +9,7 @@ import { ModalResponseService } from './modal-response.service';
 })
 export class ModalResponseComponent implements OnInit {
   @ViewChild(ModalComponent) modal: ModalComponent;
+  @ViewChild('buttonConfirm') buttonConfirm: ElementRef;
 
   /**
    * SUCCESS: 1, ERROR: 2
@@ -32,6 +33,7 @@ export class ModalResponseComponent implements OnInit {
     this.callbackOnClose = callback;
     this.msg = msg;
     this.subMsg = subMsg;
+    this.buttonConfirm.nativeElement.focus();
     this.modal.open();
   }
 

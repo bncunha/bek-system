@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-btn-secundario',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./btn-secundario.component.scss']
 })
 export class BtnSecundarioComponent implements OnInit {
+  @Input() type = "button";
 
   constructor() { }
 

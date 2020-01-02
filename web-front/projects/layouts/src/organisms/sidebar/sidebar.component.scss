@@ -10,11 +10,12 @@ hr {
     border-color: #4c4c4c;
 }
 
-.menu-list ul {
+.menu-list ul,
+.menu-list button {
     padding: 0;
     list-style: none;
     color: #fff;
-    font-size: 1.1em;
+    font-size: 1em;
 
     i {
         margin-right: 0.5em;

@@ -1,0 +1,10 @@
+<lib-page-content titulo="Lista de tamanhos" link="/tamanho/add">
+  <lib-tabela>
+    <lib-tb-titulo> Descrição </lib-tb-titulo>
+
+    <lib-tb-row *ngFor="let model of models | async" [link]="'/tamanho/edit/' + model.idTamanho" (deletar)="deletar(model.idTamanho)">
+      <lib-tb-col> {{ model.descricao }}</lib-tb-col>
+    </lib-tb-row>
+  </lib-tabela>
+
+</lib-page-content>

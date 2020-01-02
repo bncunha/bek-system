@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'estoque', pathMatch: 'full'},
   { path: 'estoque', loadChildren: '../pages/estoque/estoque.module#EstoqueModule'},
   { path: 'categoria', loadChildren: '../pages/categoria/categoria.module#CategoriaModule'},
-  { path: 'tipo-produto', loadChildren: '../pages/tipo-produto/tipo-produto.module#TipoProdutoModule'}
+  { path: 'tipo-produto', loadChildren: '../pages/tipo-produto/tipo-produto.module#TipoProdutoModule'},
+  { path: 'tamanho', loadChildren: '../pages/tamanho/tamanho.module#TamanhoModule'}
 ]
 
 @NgModule({

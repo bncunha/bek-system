@@ -6,10 +6,12 @@ import { Form } from './form.interface';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalResponseService } from 'projects/layouts/src/molecules/modal-response/modal-response.service';
 import { RESPONSE_STATUS } from '../constants/RESPONSE_STATUS.enum';
+import { Observable } from 'rxjs';
 
 export class BaseFormCrud {
     id: number;
     model: any;
+    models: Observable<any[]>;
     form: FormGroup;
     formFactory: Form<any>;
 
@@ -58,5 +60,15 @@ export class BaseFormCrud {
                 this.validateFormControls(form[key]);
             }
         })
+    }
+
+    getListaItens() {
+        this.models = this.controller.getAll();
+    }
+
+    deletar(id: number) {
+        this.controller.delete(id).subscribe(r => this.getListaItens(), err => {
+            this.modalService.open(2, null, 'Erro ao deletar!', err.message);
+        });
     }
 }

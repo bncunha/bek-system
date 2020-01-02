@@ -3,6 +3,7 @@ import { TamanhoDTO } from './dto/CriarTamanhoDTO';
 import { DefaultResponse } from 'src/defaults/DefaultResponse.class';
 import { Tamanho } from 'src/entities/Tamanho.entity';
 import { TamanhoService } from './tamanho.service';
+import { ERROR_MESSAGE } from 'src/constants/ERROR_MESSAGE';
 
 @Controller('tamanho')
 export class TamanhoController{
@@ -43,7 +44,16 @@ export class TamanhoController{
         try {
             return new DefaultResponse().ok(await this.service.delete(id));
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao excluir");
+            return new DefaultResponse().error(err, ERROR_MESSAGE.getErrorMsg(err.errno));
+        }
+    }
+
+    @Get(':id')
+    async getOne(@Param('id') id: number) {
+        try {
+            return new DefaultResponse().ok(await this.service.findOne(id));
+        } catch(err) {
+            return new DefaultResponse().error(err, ERROR_MESSAGE.getErrorMsg(err.errno));
         }
     }
 }

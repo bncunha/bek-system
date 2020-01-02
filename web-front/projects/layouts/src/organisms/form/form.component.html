@@ -2,6 +2,6 @@
   <ng-content></ng-content>
   <div class="col-12 mt-4 text-right">
     <lib-btn-secundario (click)="cancelar()" class="mr-3"> Cancelar </lib-btn-secundario>
-    <lib-btn-primario (click)="salvar.emit()"> Salvar </lib-btn-primario>
+    <lib-btn-primario type="submit" (click)="salvar.emit()"> Salvar </lib-btn-primario>
   </div>
 </form>

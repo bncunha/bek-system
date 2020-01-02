@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-btn-primario',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./btn-primario.component.scss'],
 })
 export class BtnPrimarioComponent implements OnInit {
-
+  @Input() type="button";
   constructor() { }
 
   ngOnInit() {

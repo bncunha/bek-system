@@ -14,11 +14,15 @@
 
 <ng-template #itemMenu let-menu>
   <li class="mb-3"> 
-    <a [routerLink]="menu.link" class="d-flex align-items-center" (click)="toggleSub(menu)">
+    <a [routerLink]="menu.link" class="d-flex align-items-center" *ngIf="menu.link">
+      <i [class]="menu.icon"></i> 
+      <span> {{ menu.nome }} </span>
+    </a>
+    <button class="btn p-0 d-flex align-items-center" *ngIf="!menu.link" (click)="toggleSub(menu)">
       <i [class]="menu.icon"></i> 
       <span> {{ menu.nome }} </span>
       <i class="fas fa-sort-up ml-2" [ngClass]="{'hide': !menu.showSub, 'show': menu.showSub}" *ngIf="menu.submenus"></i>
-    </a>
+    </button>
   </li>
 
   <div class="submenu-wrapper ml-3" *ngIf="menu.submenus" [ngClass]="{'hide': !menu.showSub, 'show': menu.showSub}">

@@ -22,6 +22,10 @@ export class TamanhoService {
         return this.repository.findByIds(ids);
     }
 
+    findOne(id) {
+        return this.repository.findOne(id);
+    }
+
     async update(id: number, tamanho: Tamanho): Promise<Tamanho> {
         const finded: Tamanho[] = await this.repository.findByIds([id]);
         if (!finded[0]) throw new Error('Não foi encontrado objeto com este ID')
