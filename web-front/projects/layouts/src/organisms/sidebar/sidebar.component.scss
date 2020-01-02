@@ -1,6 +1,5 @@
 .container-fluid {
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding: 2em 0em;
 }
 
 .logomarca {
@@ -20,4 +19,23 @@ hr {
     i {
         margin-right: 0.5em;
     }
+}
+
+i.hide {
+    transform: rotate(0deg);
+    transition: all 0.5s ease;
+}
+i.show {
+    transform: rotate(180deg);
+    transition: all 0.5s ease;
+}
+
+.submenu-wrapper.hide {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.submenu-wrapper.show {
+    max-height: 100px;
 }

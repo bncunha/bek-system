@@ -7,11 +7,21 @@
 
   <div class="menu-list">
     <ul>
-      <li *ngFor="let menu of menus" class="mb-3"> 
-        <a [routerLink]="menu.link">
-          <i [class]="menu.icon"></i> {{ menu.nome }} 
-        </a>
-      </li>
+      <ng-container *ngFor="let menu of menus" [ngTemplateOutlet]="itemMenu" [ngTemplateOutletContext]="{$implicit: menu}"></ng-container>
     </ul>
   </div>
 </div>
+
+<ng-template #itemMenu let-menu>
+  <li class="mb-3"> 
+    <a [routerLink]="menu.link" class="d-flex align-items-center" (click)="toggleSub(menu)">
+      <i [class]="menu.icon"></i> 
+      <span> {{ menu.nome }} </span>
+      <i class="fas fa-sort-up ml-2" [ngClass]="{'hide': !menu.showSub, 'show': menu.showSub}" *ngIf="menu.submenus"></i>
+    </a>
+  </li>
+
+  <div class="submenu-wrapper ml-3" *ngIf="menu.submenus" [ngClass]="{'hide': !menu.showSub, 'show': menu.showSub}">
+    <ng-container *ngFor="let sub of menu.submenus" [ngTemplateOutlet]="itemMenu" [ngTemplateOutletContext]="{$implicit: sub}"></ng-container>
+  </div>
+</ng-template>
