@@ -10,14 +10,15 @@ import { LabelComponent } from './label/label.component';
 import { BtnSecundarioComponent } from './btn-secundario/btn-secundario.component';
 import { BtnPerigoComponent } from './btn-perigo/btn-perigo.component';
 import { SelectComponent } from './select/select.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
-  declarations: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent, SelectComponent],
+  declarations: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent, SelectComponent, ModalComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent, SelectComponent]
+  exports: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent, SelectComponent, ModalComponent]
 })
 export class AtomsModule { }

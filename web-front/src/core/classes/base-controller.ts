@@ -6,6 +6,7 @@ import { DefaultResponse } from './default-response';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Form } from 'src/core/classes/form.interface';
 import { Injector } from '@angular/core';
+import { RESPONSE_STATUS } from '../constants/RESPONSE_STATUS.enum';
 
 export class BaseController {
     baseService: BaseService
@@ -15,17 +16,17 @@ export class BaseController {
         this.baseService = baseService;
     }
 
-    async insert(form: FormGroup): Promise<any> {
+    async insert(form: FormGroup): Promise<DefaultResponse> {
         if (form.valid) {
             const model = Object.assign({}, form.value);
             return await (await this.baseService.insert(model)).toPromise();
         } else {
             console.log('Formulário inválido', form);
-            return new DefaultResponse().error('Formulário inválido');
+            return new DefaultResponse().error('Formulário inválido', null, RESPONSE_STATUS.FORMULARIO_INVALIDO);
         }
     }
 
-    async update(form: FormGroup, id: number): Promise<any> {
+    async update(form: FormGroup, id: number): Promise<DefaultResponse> {
         if (form.valid) {
             const model = Object.assign({}, form.value);
             return await this.baseService.update(model, id).toPromise();

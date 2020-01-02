@@ -11,7 +11,7 @@ export class TipoProdutoForm extends Form<TipoProduto> {
         return this.fb.group({
             nome: [model.nome, [Validators.required]],
             descricao: [model.descricao, [Validators.required]],
-            tamanhos: [model.tamanhos]
+            tamanhos: [model.tamanhos, Validators.required]
         });
     }
 

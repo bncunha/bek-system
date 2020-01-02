@@ -1,8 +1,11 @@
-import { Injector } from '@angular/core';
+import { Injector, } from '@angular/core';
+import { Location } from '@angular/common';
 import { BaseController } from './base-controller';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute,  } from '@angular/router';
 import { Form } from './form.interface';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ModalResponseService } from 'projects/layouts/src/molecules/modal-response/modal-response.service';
+import { RESPONSE_STATUS } from '../constants/RESPONSE_STATUS.enum';
 
 export class BaseFormCrud {
     id: number;
@@ -10,12 +13,17 @@ export class BaseFormCrud {
     form: FormGroup;
     formFactory: Form<any>;
 
-    private route: ActivatedRoute
+    private route: ActivatedRoute;
+    private modalService: ModalResponseService;
+    private location: Location;
+
     constructor(
         private controller: BaseController,
         private injector: Injector
     ) { 
         this.route = injector.get(ActivatedRoute);
+        this.modalService = injector.get(ModalResponseService);
+        this.location = injector.get(Location);
     }
 
     init(formFactory) {
@@ -33,7 +41,12 @@ export class BaseFormCrud {
     async submit() {
         console.log('Submit')
         this.validateFormControls(this.form);
-        this.id ? await this.controller.update(this.form, this.id) : await this.controller.insert(this.form);
+        const resp = this.id ? await this.controller.update(this.form, this.id) : await this.controller.insert(this.form);
+        if (resp.status == 200) {
+            this.modalService.open(1, this.location.back.bind(this.location), 'Sucesso!', 'Operação realizada com sucesso!');
+        } else if (resp.status != RESPONSE_STATUS.FORMULARIO_INVALIDO) {
+            this.modalService.open(2, null, 'Erro!', resp.message);
+        }
     }
 
     private validateFormControls(form: FormGroup) {

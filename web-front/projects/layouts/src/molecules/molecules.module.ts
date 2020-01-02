@@ -5,12 +5,14 @@ import { TituloPaginaComponent } from './titulo-pagina/titulo-pagina.component';
 import { TabelaModule } from './tabela/tabela.module';
 import { FormInputComponent } from './form-input/form-input.component';
 import { FormSelectComponent } from './form-select/form-select.component';
+import { ModalResponseComponent } from './modal-response/modal-response.component';
 
 @NgModule({
   declarations: [
     TituloPaginaComponent,
     FormInputComponent,
-    FormSelectComponent
+    FormSelectComponent,
+    ModalResponseComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { FormSelectComponent } from './form-select/form-select.component';
     TituloPaginaComponent,
     TabelaModule,
     FormInputComponent,
-    FormSelectComponent
+    FormSelectComponent,
+    ModalResponseComponent
   ]
 })
 export class MoleculesModule { }

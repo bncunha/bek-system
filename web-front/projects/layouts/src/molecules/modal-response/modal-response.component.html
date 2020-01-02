@@ -1,0 +1,13 @@
+<lib-modal>
+  <div class="icon-wrapper">
+    <i title="Sucesso!" class="far fa-check-circle" *ngIf="type == 1"></i>
+    <i title="Erro!" class="far fa-times-circle" *ngIf="type == 2"></i>
+  </div>
+  <div class="msg-wrapper text-center">
+    <h4> {{ msg }}</h4>
+    <h6> {{ subMsg }}</h6>
+  </div>
+  <div class="button-wrapper">
+    <button (click)="close()" class="btn btn-success"> Continuar </button>
+  </div>
+</lib-modal>
