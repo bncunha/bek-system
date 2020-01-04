@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'estoque', pathMatch: 'full'},
-  { path: 'estoque', loadChildren: '../pages/estoque/estoque.module#EstoqueModule'},
-  { path: 'categoria', loadChildren: '../pages/categoria/categoria.module#CategoriaModule'},
-  { path: 'tipo-produto', loadChildren: '../pages/tipo-produto/tipo-produto.module#TipoProdutoModule'},
-  { path: 'tamanho', loadChildren: '../pages/tamanho/tamanho.module#TamanhoModule'},
-  { path: 'cor', loadChildren: '../pages/cor/cor.module#CorModule'}
+  { path: 'estoque', loadChildren: '../pages/estoque/estoque.module#EstoqueModule', data: {title: 'Estoque'}},
+  { path: 'categoria', loadChildren: '../pages/categoria/categoria.module#CategoriaModule', data: {title: 'Categoria'}},
+  { path: 'tipo-produto', loadChildren: '../pages/tipo-produto/tipo-produto.module#TipoProdutoModule', data: {title: 'Tipo de produto'}},
+  { path: 'tamanho', loadChildren: '../pages/tamanho/tamanho.module#TamanhoModule', data: {title: 'Tamanhos'}},
+  { path: 'cor', loadChildren: '../pages/cor/cor.module#CorModule', data: {title: 'Cores'}}
 ]
 
 @NgModule({
