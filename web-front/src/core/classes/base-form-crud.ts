@@ -40,8 +40,8 @@ export class BaseFormCrud {
     }
 
     async submit() {
-        console.log('Submit')
         this.validateFormControls(this.form);
+        console.log('Submit', this.form);
         const resp = this.id ? await this.controller.update(this.form, this.id) : await this.controller.insert(this.form);
         if (resp.status == 200) {
             this.modalService.open(1, this.location.back.bind(this.location), 'Sucesso!', 'Operação realizada com sucesso!');

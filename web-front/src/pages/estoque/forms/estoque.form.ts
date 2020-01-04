@@ -10,7 +10,7 @@ export class EstoqueForm extends Form<ProdutoDTO> {
     createForm(model: ProdutoDTO): FormGroup {
         return this.fb.group({
             nome: [model.nome, Validators.required],
-            descricao: [model.descricao, Validators.required],
+            descricao: [model.descricao],
             cor: [model.cor, Validators.required],
             tipoProduto: [model.tipoProduto, Validators.required],
             qtdTamanho: this.fb.array([])

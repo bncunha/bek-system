@@ -7,7 +7,6 @@ export class TipoProdutoDTO {
     @MinLength(3)
     nome: string;
 
-    @MinLength(3)
     descricao: string;
 
     tamanhos: number[];

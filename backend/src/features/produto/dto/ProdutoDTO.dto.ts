@@ -7,7 +7,6 @@ export class ProdutoDTO {
     @IsNotEmpty()
     nome: string;
 
-    @MinLength(3)
     descricao: string;
 
     cor: number;

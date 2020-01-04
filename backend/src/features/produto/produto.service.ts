@@ -34,7 +34,6 @@ export class ProdutoService extends DefaultService<Produto> {
 
             const produtoSaved = await this._repository.save(newProduto);
             const res = await this.produtoTamanhoService.addManyTamanhoToProduto(produtoDTO.qtdTamanho, produtoSaved.idProduto);
-            console.log(res);
             return produtoSaved;
         } catch(err) {
             throw new Error(err);

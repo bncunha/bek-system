@@ -9,7 +9,6 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
     }
 
     createTypeOrmOptions(): TypeOrmModuleOptions {
-        console.log(this.envConfig.get('DB_HOST'))
         return {
             type: 'mysql',
             host: this.envConfig.get('DB_HOST'),

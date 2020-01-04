@@ -7,7 +7,7 @@ export class CrudCorDTOForm extends Form<CrudCorDTO> {
     createForm(model: CrudCorDTO): FormGroup {
         return this.fb.group({
             nome: [model.nome, [Validators.required, Validators.minLength(3)]],
-            hex: [model.nome, [Validators.required, Validators.minLength(4), Validators.maxLength(7)]]
+            hex: [model.nome, [Validators.minLength(4), Validators.maxLength(7)]]
         })
     }
 }
