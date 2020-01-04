@@ -5,7 +5,7 @@ import { ProdutoService } from 'src/services/produto.service';
 @Injectable()
 export class ProdutoControllerService extends BaseController {
 
-  constructor(private service: ProdutoService) {
+  constructor(service: ProdutoService) {
     super(service);
   }
 

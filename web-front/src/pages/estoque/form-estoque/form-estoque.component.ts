@@ -4,6 +4,8 @@ import { ProdutoControllerService } from '../controllers/produto-controller.serv
 import { EstoqueForm } from '../forms/estoque.form';
 import { Observable } from 'rxjs';
 import { TipoProdutoControllerService } from 'src/pages/tipo-produto/controllers/tipo-produto-controller.service';
+import { tap } from 'rxjs/operators';
+import { CorService } from 'src/services/cor.service';
 
 @Component({
   selector: 'app-form-estoque',
@@ -13,9 +15,11 @@ import { TipoProdutoControllerService } from 'src/pages/tipo-produto/controllers
 })
 export class FormEstoqueComponent extends BaseFormCrud implements OnInit {
 
-  tiposProduto: Observable<any>;
+  tiposProduto: any;
+  cores: Observable<any>;
   constructor(
     private tipoProdutoService: TipoProdutoControllerService,
+    private corService: CorService,
     controller: ProdutoControllerService,
     injector: Injector
   ) { 
@@ -24,9 +28,21 @@ export class FormEstoqueComponent extends BaseFormCrud implements OnInit {
 
   ngOnInit() {
     this.init(new EstoqueForm());
-    this.tiposProduto = this.tipoProdutoService.getAll();
+    this.tipoProdutoService.getAll().subscribe(r => this.tiposProduto = r);
+    this.cores = this.corService.getAll().pipe(tap(r => console.log(r)));
   }
 
+  criarTamanhos(event) {
+    const idTipoProduto = event.target.value;
+    new EstoqueForm().createQtdTamanhoArray(this.tiposProduto.find(t => t.idTipoProduto == idTipoProduto).tamanhos, this.form);
+  }
+
+  getTamanhoLabel(idTamanho) {
+    if (!this.tiposProduto) return;
+    const idTipoProduto = this.form.value.tipoProduto;
+    const tamanhos = this.tiposProduto.find(t => t.idTipoProduto == idTipoProduto).tamanhos;
+    return tamanhos.find(t => t.idTamanho == idTamanho).descricao;
+  }
 
 
 }

@@ -24,6 +24,8 @@ export class Produto extends DefaultEntity{
     @OneToMany(type => ProdutoHasTamanho, pt => pt.produto)
     produtoTamanho: ProdutoHasTamanho[];
 
+    quantidadeTotal: number = 0;
+
     getId() {
         return this.idProduto;
     }

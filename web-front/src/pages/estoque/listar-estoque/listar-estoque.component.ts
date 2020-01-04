@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { BaseListCrud } from 'src/core/classes/base-list.crud';
 import { ProdutoControllerService } from '../controllers/produto-controller.service';
 
@@ -9,8 +9,8 @@ import { ProdutoControllerService } from '../controllers/produto-controller.serv
 })
 export class ListarEstoqueComponent extends BaseListCrud implements OnInit {
 
-  constructor(controller: ProdutoControllerService) {
-    super(controller);
+  constructor(controller: ProdutoControllerService, injector: Injector) {
+    super(controller, injector);
    }
 
   ngOnInit() {

@@ -1,8 +1,20 @@
 <lib-page-content titulo="Adicionar produto">
     <lib-form [formGroup]="form" (salvar)="submit()">
-        <lib-form-input class="col-12" label="Descrição" formControlName="nome"></lib-form-input>
-        <lib-form-input class="col-6" label="Quantidade" formControlName="quantidade"></lib-form-input>
-        <lib-form-select class="col-6" label="Tipo de produto" formControlName="tipoProduto" [data]="tiposProduto | async" 
-        bindValue="id" bindLabel="nome"></lib-form-select>
+        <lib-form-input class="col-12" label="Nome do produto" formControlName="nome"></lib-form-input>
+        <lib-form-input class="col-12" label="Descrição" formControlName="descricao"></lib-form-input>
+        <lib-form-select class="col-6" label="Cor do produto" formControlName="cor" [data]="cores | async" 
+        bindValue="idCorProduto" bindLabel="nome"></lib-form-select>
+        <lib-form-select class="col-6" label="Tipo de produto" (change)="criarTamanhos($event)" formControlName="tipoProduto" [data]="tiposProduto" 
+        bindValue="idTipoProduto" bindLabel="nome"></lib-form-select>
+
+        <fieldset class="col-12" formArrayName="qtdTamanho" *ngIf="form.get('qtdTamanho').controls.length">
+            <legend> Quantidades Iniciais </legend>
+            <div class="row" *ngFor="let control of form.get('qtdTamanho').controls; let i = index">
+                <div class="form-group col-md-6" [formGroup]="control">
+                    <label> {{ getTamanhoLabel(control.value.tamanho) }} </label>
+                    <lib-form-input formControlName="quantidadeInicial" class="d-inline-block w-50 ml-2"></lib-form-input>
+                </div>
+            </div>
+        </fieldset>
     </lib-form>
 </lib-page-content>

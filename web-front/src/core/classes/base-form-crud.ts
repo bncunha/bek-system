@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { BaseController } from './base-controller';
 import { Router, ActivatedRoute,  } from '@angular/router';
 import { Form } from './form.interface';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { ModalResponseService } from 'projects/layouts/src/molecules/modal-response/modal-response.service';
 import { RESPONSE_STATUS } from '../constants/RESPONSE_STATUS.enum';
 import { Observable } from 'rxjs';
@@ -50,13 +50,13 @@ export class BaseFormCrud {
         }
     }
 
-    private validateFormControls(form: FormGroup) {
+    private validateFormControls(form: FormGroup | FormArray) {
         Object.keys(form.controls).forEach(key => {
             if(form.controls[key] instanceof FormControl) {
                 // new FormControl().markAsTouched
                 form.controls[key].markAsDirty();
             } else {
-                this.validateFormControls(form[key]);
+                this.validateFormControls(form.controls[key]);
             }
         })
     }

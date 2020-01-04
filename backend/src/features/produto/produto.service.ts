@@ -20,7 +20,7 @@ export class ProdutoService extends DefaultService<Produto> {
         private tipoProdutoService: TipoProdutoService,
         private tamanhoService: TamanhoService,
         private produtoTamanhoService: ProdutoHasTamanhoService) {
-        super(repository);
+        super(repository, ['tipoProduto', 'produtoTamanho', 'cor']);
         this._repository = repository;
     }
 
@@ -51,10 +51,52 @@ export class ProdutoService extends DefaultService<Produto> {
 
             const produtoSaved = await this._repository.save(produtoFinded);
             const res = await this.produtoTamanhoService.updateManyTamanhoToProduto(produtoDTO.qtdTamanho, produtoSaved.idProduto);
-            console.log(res);
             return produtoSaved;
         } catch(err) {
             throw new Error(err);
         }
     }
+
+    async getAll(): Promise<Produto[]> {
+        let produtos = await super.getAll();
+        produtos.map(p => p.quantidadeTotal = p.produtoTamanho.reduce((prev, cur) => prev += cur.quantidade, 0));
+        return produtos;
+    }
+
+    async findOneByID(id: number): Promise<Produto> {
+        try {
+            let produtoEncontrado = await super.findOneByID(id);
+            for (let pt of produtoEncontrado.produtoTamanho) {
+                pt.tamanho = await this.tamanhoService.findOne(pt.idTamanho);
+            }
+            return produtoEncontrado;
+        } catch(err) {
+            throw new Error(err);
+        }
+    }
+
+    async delete(id): Promise<boolean>  {
+        try {
+            let produto = await this.findOneByID(id);
+            if (this.possuiEstoque(produto) == false) {
+                for (let pt of produto.produtoTamanho) {
+                    this.produtoTamanhoService.delete(pt);
+                }
+                return super.delete(id);
+            }
+            throw new Error('Este produto possui itens no estoque. Zere o estoque primeiro para depois deletá-lo!');
+        } catch(err) {
+            throw new Error(err);
+        }
+    }
+
+    private possuiEstoque(produto: Produto) {
+        for(let pt of produto.produtoTamanho) {
+            if (pt.quantidade > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

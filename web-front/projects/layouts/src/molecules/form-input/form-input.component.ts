@@ -44,7 +44,7 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   }
   
   gerarIdInput() {
-    this.idInput = this.label + new Date().getTime();
+    this.idInput = this.label ? this.label + new Date().getTime() : String(new Date().getTime());
   }
 
   writeValue(obj: string): void {

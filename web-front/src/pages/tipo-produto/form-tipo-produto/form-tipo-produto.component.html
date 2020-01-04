@@ -2,7 +2,7 @@
   <lib-form [formGroup]="form" (salvar)="submit()">
     <lib-form-input class="col-6" label="Nome" formControlName="nome"></lib-form-input>
     <lib-form-input class="col-6" label="Descrição" formControlName="descricao"></lib-form-input>
-    <lib-form-select [data]="(tamanhos | async)?.data" [multi]="true" class="col-6" label="Tamanhos" 
+    <lib-form-select [data]="(tamanhos | async)" [multi]="true" class="col-6" label="Tamanhos" 
     bindLabel="descricao"
     bindValue="idTamanho"
     formControlName="tamanhos"></lib-form-select>

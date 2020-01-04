@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { DefaultResponse } from './default-response';
 import { Injectable, Optional } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 export class BaseService {
     databaseKey: string;
@@ -25,8 +26,8 @@ export class BaseService {
         return this.http.delete<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}/${id}`);
     }
 
-    getAll(): Observable<DefaultResponse> {
-        return this.http.get<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}`);
+    getAll(): Observable<any[]> {
+        return this.http.get<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}`).pipe(map(r => r.data));
     }
 
     findById(id: number): Observable<DefaultResponse> {

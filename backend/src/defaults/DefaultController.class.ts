@@ -1,18 +1,20 @@
 import { Post, Body, Get, Put, Param, Delete } from "@nestjs/common";
 import { DefaultResponse } from "./DefaultResponse.class";
 import { DefaultService } from "./DefaultService.class";
+import { ERROR_MESSAGE } from "src/constants/ERROR_MESSAGE";
 
 export class DefaultController<M> {
     constructor(
-        private service: DefaultService<M>
-    ) {}
+        private service: DefaultService<M>,
+    ) {
+    }
 
     async create(modelDTO: any) {
         try {
             const model = Object.assign({}, modelDTO);
             return new DefaultResponse().ok(await this.service.criar(model))
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao criar novo objeto");
+            return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
         }
     }
 
@@ -21,7 +23,7 @@ export class DefaultController<M> {
             const model = Object.assign({}, modelDTO);
             return new DefaultResponse().ok(await this.service.update(id, model));
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao atualizar objeto");
+            return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
         }
     }
 
@@ -30,7 +32,7 @@ export class DefaultController<M> {
         try {
             return new DefaultResponse().ok(await this.service.getAll());
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao recuperar todos os objetos");
+            return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
         }
     }
 
@@ -39,7 +41,7 @@ export class DefaultController<M> {
         try {
             return new DefaultResponse().ok(await this.service.findOneByID(id));
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao recuperar objeto pelo id");
+            return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
         }
     }
     
@@ -48,7 +50,7 @@ export class DefaultController<M> {
         try {
             return new DefaultResponse().ok(await this.service.delete(id));
         } catch(err) {
-            return new DefaultResponse().error(err, "Erro ao excluir");
+            return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
         }
     }
 }

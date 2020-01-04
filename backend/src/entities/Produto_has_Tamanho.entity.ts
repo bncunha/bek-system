@@ -8,10 +8,10 @@ export class ProdutoHasTamanho extends DefaultEntity{
     @PrimaryGeneratedColumn()
     idProdutoHasTamanho: number;
 
-    @PrimaryColumn()
+    @Column()
     idProduto: number;
 
-    @PrimaryColumn()
+    @Column()
     idTamanho: number;
 
     @Column({default: 0})

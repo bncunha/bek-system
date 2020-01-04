@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 export abstract class Form<T> {
     fb = new FormBuilder();
@@ -15,4 +15,11 @@ export abstract class Form<T> {
     updateForm(form: FormGroup, model: any) {
         form.patchValue(model);
     }
+
+    zerarFormArray(formArray: FormArray) {
+        while (formArray.length != 0) {
+          formArray.removeAt(0);
+        }
+      }
+    
 }

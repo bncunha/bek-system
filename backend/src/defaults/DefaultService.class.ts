@@ -15,7 +15,7 @@ export class DefaultService<M> {
     }
 
     getAll(): Promise<M[]> {
-        return this.repository.find();
+        return this.repository.find({relations: this.populateEntities});
     }
 
     async findOneByID(id: number): Promise<M> {

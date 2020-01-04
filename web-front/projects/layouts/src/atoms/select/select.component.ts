@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, HostBinding, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent implements OnInit {
+  @ViewChild('select') select: ElementRef;
+
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
   @Output() change = new EventEmitter();
@@ -15,11 +17,18 @@ export class SelectComponent implements OnInit {
   @Input() items: any[];
   @Input() labelBind: string = 'nome';
   @Input() attrBind: string = 'id';
-  @Input() multi: boolean = false;
 
   selectValue: FormControl = new FormControl();
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
+  @Input()
+  set multi(value: boolean) {
+    if (value) {
+      this.renderer.setAttribute(this.select.nativeElement, 'multiple', '');
+    } else {
+      this.renderer.removeAttribute(this.select.nativeElement, 'multiple');
+    }
+  }
 
   ngOnInit() {
   }
