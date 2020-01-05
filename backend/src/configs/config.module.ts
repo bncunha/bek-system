@@ -10,7 +10,7 @@ import { TypeormConfigService } from './services/typeorm-config/typeorm-config.s
     providers: [
         {
             provide: EnvironmentConfigService,
-            useValue: new EnvironmentConfigService(`${process.env.NODE_ENV || 'development'}.env`),
+            useValue: new EnvironmentConfigService(`${process.env.NODE_ENV || 'development'}.env.json`),
         },
         TypeormConfigService
     ], exports: [

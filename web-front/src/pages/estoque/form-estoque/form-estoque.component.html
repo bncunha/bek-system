@@ -7,9 +7,9 @@
         <lib-form-select class="col-6" label="Tipo de produto" (change)="criarTamanhos($event)" formControlName="tipoProduto" [data]="tiposProduto" 
         bindValue="idTipoProduto" bindLabel="nome"></lib-form-select>
 
-        <fieldset class="col-12" formArrayName="qtdTamanho" *ngIf="form.get('qtdTamanho').controls.length">
+        <fieldset class="col-12" formArrayName="qtdTamanho" *ngIf="qtdTamanhoControls.length">
             <legend> Quantidades Iniciais </legend>
-            <div class="row" *ngFor="let control of form.get('qtdTamanho').controls; let i = index">
+            <div class="row" *ngFor="let control of qtdTamanhoControls; let i = index">
                 <div class="form-group col-md-6" [formGroup]="control">
                     <label> {{ getTamanhoLabel(control.value.tamanho) }} </label>
                     <lib-form-input formControlName="quantidadeInicial" class="d-inline-block w-50 ml-2"></lib-form-input>

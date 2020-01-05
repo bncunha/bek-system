@@ -9,6 +9,7 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
     }
 
     createTypeOrmOptions(): TypeOrmModuleOptions {
+        console.log(this.envConfig);
         return {
             type: 'mysql',
             host: this.envConfig.get('DB_HOST'),
@@ -16,7 +17,7 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
             username: this.envConfig.get('DB_USERNAME'),
             password: this.envConfig.get('DB_PASS'),
             database: this.envConfig.get('DB_NAME'),
-            entities: [this.envConfig.get('ENTITIES_PATH')],
+            entities: this.envConfig.get('ENTITIES_PATH'),
             synchronize: true,
         };
     }

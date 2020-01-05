@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { TipoProdutoControllerService } from 'src/pages/tipo-produto/controllers/tipo-produto-controller.service';
 import { tap } from 'rxjs/operators';
 import { CorService } from 'src/services/cor.service';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-form-estoque',
@@ -42,6 +43,11 @@ export class FormEstoqueComponent extends BaseFormCrud implements OnInit {
     const idTipoProduto = this.form.value.tipoProduto;
     const tamanhos = this.tiposProduto.find(t => t.idTipoProduto == idTipoProduto).tamanhos;
     return tamanhos.find(t => t.idTamanho == idTamanho).descricao;
+  }
+
+  get qtdTamanhoControls() {
+    const qtdTamanho = <FormArray> this.form.get('qtdTamanho')
+    return qtdTamanho.controls;
   }
 
 
