@@ -7,9 +7,10 @@ import { PageContentComponent } from './page-content/page-content.component';
 import { RouterModule } from '@angular/router';
 import { FormComponent } from './form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
-  declarations: [SidebarComponent, PageContentComponent, FormComponent],
+  declarations: [SidebarComponent, PageContentComponent, FormComponent, FiltersComponent],
   imports: [
     CommonModule,
     AtomsModule,
@@ -18,6 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [SidebarComponent, PageContentComponent, FormComponent]
+  exports: [SidebarComponent, PageContentComponent, FormComponent, FiltersComponent]
 })
 export class OrganismsModule { }

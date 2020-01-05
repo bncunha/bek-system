@@ -1,4 +1,5 @@
 import { Repository } from "typeorm";
+import { ObjectUtils } from "src/utils/ObjectUtils.util";
 
 export class DefaultService<M> {
     populateEntities: string[];
@@ -14,8 +15,9 @@ export class DefaultService<M> {
         return this.repository.save(model);
     }
 
-    getAll(): Promise<M[]> {
-        return this.repository.find({relations: this.populateEntities});
+    getAll(filters?): Promise<M[]> {
+        const filtros = ObjectUtils.cleanNullValues(filters);
+        return this.repository.find({relations: this.populateEntities, where: filtros});
     }
 
     async findOneByID(id: number): Promise<M> {

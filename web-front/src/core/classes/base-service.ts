@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { DefaultResponse } from './default-response';
@@ -26,8 +26,12 @@ export class BaseService {
         return this.http.delete<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}/${id}`);
     }
 
-    getAll(): Observable<any[]> {
-        return this.http.get<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}`).pipe(map(r => r.data));
+    getAll(filters?): Observable<any[]> {
+        let params = new HttpParams();
+        if (filters) {
+            Object.keys(filters).forEach(key => params = params.append(key, filters[key]));
+        }
+        return this.http.get<DefaultResponse>(`${environment.backEndUrl}/${this.databaseKey}`, {params}).pipe(map(r => r.data));
     }
 
     findById(id: number): Observable<DefaultResponse> {

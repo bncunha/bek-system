@@ -1,4 +1,4 @@
-import { Post, Body, Get, Put, Param, Delete } from "@nestjs/common";
+import { Post, Body, Get, Put, Param, Delete, Req, Query } from "@nestjs/common";
 import { DefaultResponse } from "./DefaultResponse.class";
 import { DefaultService } from "./DefaultService.class";
 import { ERROR_MESSAGE } from "src/constants/ERROR_MESSAGE";
@@ -28,9 +28,9 @@ export class DefaultController<M> {
     }
 
     @Get()
-    async listar() {
+    async listar(@Query() filters: any) {
         try {
-            return new DefaultResponse().ok(await this.service.getAll());
+            return new DefaultResponse().ok(await this.service.getAll(filters));
         } catch(err) {
             return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
         }

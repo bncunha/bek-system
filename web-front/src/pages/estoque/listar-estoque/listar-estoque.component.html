@@ -1,5 +1,12 @@
 
 <lib-page-content titulo="Lista de produtos" link="/estoque/add">
+  <lib-filters [formGroup]="formFilters" (filtrar)="filtrar($event)">
+    <lib-form-input label="ID Produto" formControlName="id" class="col"></lib-form-input>
+    <lib-form-input label="Nome" class="col" formControlName="nome"></lib-form-input>
+    <lib-form-select class="col" label="Tipo de produto" formControlName="tipoProduto" [data]="tiposProduto | async" 
+        bindValue="idTipoProduto" bindLabel="nome"></lib-form-select>
+  </lib-filters>
+
   <lib-tabela>
     <lib-tb-titulo> ID </lib-tb-titulo>
     <lib-tb-titulo> Nome </lib-tb-titulo>

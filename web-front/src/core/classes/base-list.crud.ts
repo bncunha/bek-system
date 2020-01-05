@@ -10,8 +10,8 @@ export class BaseListCrud {
     this.modalService = injector.get(ModalResponseService);
   }
 
-  getAll() {
-    this.models = this.controller.getAll();
+  getAll(filters?: any) {
+    this.models = this.controller.getAll(filters);
   }
 
   deletar(id: number) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EntityManager, Repository } from 'typeorm';
+import { EntityManager, Repository, Like } from 'typeorm';
 import { Produto } from 'src/entities/Produto.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DefaultService } from 'src/defaults/DefaultService.class';
@@ -10,6 +10,8 @@ import { TamanhoService } from '../tamanho/tamanho.service';
 import { ProdutoHasTamanho } from 'src/entities/Produto_has_Tamanho.entity';
 import { ProdutoHasTamanhoService } from '../produto-has-tamanho/produto-has-tamanho.service';
 import { Tamanho } from 'src/entities/Tamanho.entity';
+import { GetAllFiltersDTO } from './dto/GetAllFiltersDTO';
+import { ProdutoConverter } from './converters/ProdutoConverter';
 
 @Injectable()
 export class ProdutoService extends DefaultService<Produto> {
@@ -56,8 +58,9 @@ export class ProdutoService extends DefaultService<Produto> {
         }
     }
 
-    async getAll(): Promise<Produto[]> {
-        let produtos = await super.getAll();
+    async getAll(filters: GetAllFiltersDTO): Promise<Produto[]> {        
+        let filtros = ProdutoConverter.fromFilters(filters);
+        let produtos = await super.getAll(filtros);
         produtos.map(p => p.quantidadeTotal = p.produtoTamanho.reduce((prev, cur) => prev += cur.quantidade, 0));
         return produtos;
     }

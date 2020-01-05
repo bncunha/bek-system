@@ -44,8 +44,8 @@ export class BaseController {
         );
     }
 
-    getAll(): Observable<any[]> {
-        return this.baseService.getAll().pipe(tap(r => console.log('GETALL(): ', r)));
+    getAll(filters?): Observable<any[]> {
+        return this.baseService.getAll(filters).pipe(tap(r => console.log('GETALL(): ', r)));
     }
 
     getOne(id: number): Observable<any> {
