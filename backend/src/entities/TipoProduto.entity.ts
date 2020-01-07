@@ -12,7 +12,7 @@ export class TipoProduto extends DefaultEntity {
     @Column({nullable: false})
     nome: string;
 
-    @Column()
+    @Column({nullable: true})
     descricao: string;
 
     @ManyToMany(type => Tamanho)

@@ -10,6 +10,8 @@ export class ProdutoDTO {
     descricao: string;
 
     cor: number;
+    cor2: number;
+    cor3: number;
 
     @IsNotEmpty()
     tipoProduto: number;

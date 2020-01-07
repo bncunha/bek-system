@@ -22,16 +22,20 @@ export class ProdutoService extends DefaultService<Produto> {
         private tipoProdutoService: TipoProdutoService,
         private tamanhoService: TamanhoService,
         private produtoTamanhoService: ProdutoHasTamanhoService) {
-        super(repository, ['tipoProduto', 'produtoTamanho', 'cor']);
+        super(repository, ['tipoProduto', 'produtoTamanho', 'cor', 'cor2', 'cor3']);
         this._repository = repository;
     }
 
     async criarProduto(produtoDTO: ProdutoDTO) {
         try {
             const cor = await this.corService.findOneByID(produtoDTO.cor);
+            const cor2 = await this.corService.findOneByID(produtoDTO.cor2);
+            const cor3 = await this.corService.findOneByID(produtoDTO.cor3);
             const tipoProduto = await this.tipoProdutoService.findOneByID(produtoDTO.tipoProduto);
             let newProduto: Produto = Object.assign(new Produto(), produtoDTO);
             newProduto.cor = cor;
+            newProduto.cor2 = cor2;
+            newProduto.cor3 = cor3;
             newProduto.tipoProduto = tipoProduto;
 
             const produtoSaved = await this._repository.save(newProduto);
@@ -45,9 +49,13 @@ export class ProdutoService extends DefaultService<Produto> {
     async atualizarProduto(id: number, produtoDTO: ProdutoDTO) {
         try {
             const cor = await this.corService.findOneByID(produtoDTO.cor);
+            const cor2 = await this.corService.findOneByID(produtoDTO.cor2);
+            const cor3 = await this.corService.findOneByID(produtoDTO.cor3);
             const tipoProduto = await this.tipoProdutoService.findOneByID(produtoDTO.tipoProduto);
             let produtoFinded: Produto = Object.assign(await super.findOneByID(id), produtoDTO);
             produtoFinded.cor = cor;
+            produtoFinded.cor2 = cor2;
+            produtoFinded.cor3 = cor3;
             produtoFinded.tipoProduto = tipoProduto;
 
             const produtoSaved = await this._repository.save(produtoFinded);

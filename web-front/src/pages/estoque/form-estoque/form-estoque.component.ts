@@ -42,7 +42,7 @@ export class FormEstoqueComponent extends BaseFormCrud implements OnInit {
     if (!this.tiposProduto) return;
     const idTipoProduto = this.form.value.tipoProduto;
     const tamanhos = this.tiposProduto.find(t => t.idTipoProduto == idTipoProduto).tamanhos;
-    return tamanhos.find(t => t.idTamanho == idTamanho).descricao;
+    return tamanhos.find(t => t.idTamanho == idTamanho) ? tamanhos.find(t => t.idTamanho == idTamanho).descricao : null;
   }
 
   get qtdTamanhoControls() {

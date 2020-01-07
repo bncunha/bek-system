@@ -11,7 +11,9 @@ export class EstoqueForm extends Form<ProdutoDTO> {
         return this.fb.group({
             nome: [model.nome, Validators.required],
             descricao: [model.descricao],
-            cor: [model.cor, Validators.required],
+            cor: [model.cor],
+            cor2: [model.cor2],
+            cor3: [model.cor3],
             tipoProduto: [model.tipoProduto, Validators.required],
             qtdTamanho: this.fb.array([])
         });
@@ -32,6 +34,8 @@ export class EstoqueForm extends Form<ProdutoDTO> {
         form.patchValue(model);
         form.patchValue({
             cor: model.cor.idCorProduto,
+            cor2: model.cor2.idCorProduto,
+            cor3: model.cor3.idCorProduto,
             tipoProduto: model.tipoProduto.idTipoProduto
         });
         this.createQtdTamanhoArray(model.produtoTamanho.map(pt => {

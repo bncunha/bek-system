@@ -15,8 +15,14 @@ export class Produto extends DefaultEntity{
     @Column({nullable: true})
     descricao: string;
 
-    @ManyToOne(type => CorProduto, cor => cor.produtos)
+    @ManyToOne(type => CorProduto, cor => cor.produtos, {nullable: true})
     cor: CorProduto;
+
+    @ManyToOne(type => CorProduto, cor => cor.produtos2, {nullable: true})
+    cor2: CorProduto;
+
+    @ManyToOne(type => CorProduto, cor => cor.produtos3, {nullable: true})
+    cor3: CorProduto;
 
     @ManyToOne(type => TipoProduto, tipo => tipo.produtos)
     tipoProduto: TipoProduto
