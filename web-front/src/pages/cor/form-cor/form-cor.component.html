@@ -1,6 +1,10 @@
 <lib-page-content titulo="Adicionar cor">
   <lib-form [formGroup]="form" (salvar)="submit()">
     <lib-form-input class="col-6" label="Nome da cor" formControlName="nome"></lib-form-input>
-    <lib-form-input class="col-6" label="Código da cor" formControlName="hex"></lib-form-input>
+    <div class="position-relative col-6">
+      <lib-form-input colorPicker class="color" (colorPickerChange)="atualizarCor($event)" 
+      label="Hexadecimal" formControlName="hex"></lib-form-input>
+      <div [style.background]="form.value.hex" class="show-color"></div>
+    </div>
   </lib-form>
 </lib-page-content>

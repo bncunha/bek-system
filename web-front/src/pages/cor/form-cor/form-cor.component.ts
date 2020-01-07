@@ -21,4 +21,9 @@ export class FormCorComponent extends BaseFormCrud implements OnInit {
     this.init(new CrudCorDTOForm());
   }
 
+  atualizarCor(cor) {
+    this.form.get('hex').patchValue(cor);
+    console.log(cor);
+  }
+
 }

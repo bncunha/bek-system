@@ -5,13 +5,15 @@ import { ListarCoresComponent } from './listar-cores/listar-cores.component';
 import { FormCorComponent } from './form-cor/form-cor.component';
 import { CoreModule } from 'src/core/core.module';
 import { CorController } from './controllers/cor-controller.service';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   declarations: [ListarCoresComponent, FormCorComponent],
   imports: [
     CommonModule,
     CorRoutingModule,
-    CoreModule
+    CoreModule,
+    ColorPickerModule
   ], providers: [
     CorController
   ]
