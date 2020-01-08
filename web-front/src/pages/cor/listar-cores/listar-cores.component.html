@@ -5,7 +5,10 @@
 
     <lib-tb-row *ngFor="let model of models | async" [link]="'/cor/edit/' + model.idCorProduto" (deletar)="deletar(model.idCorProduto)">
       <lib-tb-col> {{ model.nome }}</lib-tb-col>
-      <lib-tb-col> {{ model.hex }}</lib-tb-col>
+      <lib-tb-col> 
+        <span> {{ model.hex }} </span>
+        <lib-color-box [cor]="model.hex"></lib-color-box>
+      </lib-tb-col>
     </lib-tb-row>
   </lib-tabela>
 

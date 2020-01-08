@@ -12,6 +12,7 @@
     <lib-tb-titulo> Nome </lib-tb-titulo>
     <lib-tb-titulo> Descrição </lib-tb-titulo>
     <lib-tb-titulo> Quantidade </lib-tb-titulo>
+    <lib-tb-titulo> Cores </lib-tb-titulo>
     <lib-tb-titulo> Tipo de produto </lib-tb-titulo>
 
     <lib-tb-row *ngFor="let produto of models | async" (deletar)="deletar(produto.idProduto)" [link]="'/estoque/edit/' + produto.idProduto">
@@ -19,6 +20,12 @@
       <lib-tb-col> {{ produto.nome }} </lib-tb-col>
       <lib-tb-col> {{ produto.descricao }} </lib-tb-col>
       <lib-tb-col> {{ produto.quantidadeTotal }} </lib-tb-col>
+      <lib-tb-col> 
+        <div class="grid color-grid" *ngFor="let cor of getCores(produto)">
+          <span> {{ cor.nome }} </span> 
+          <lib-color-box [cor]="cor.hex" [small]="true"></lib-color-box>
+        </div>
+      </lib-tb-col>
       <lib-tb-col> {{ produto.tipoProduto?.nome }} </lib-tb-col>
     </lib-tb-row>
   </lib-tabela>

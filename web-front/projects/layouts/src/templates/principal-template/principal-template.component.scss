@@ -10,5 +10,9 @@
 }
 
 .principal {
-    padding: 2em;;
+    padding: 2em;
+    max-height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding-bottom: 5em;
 }
