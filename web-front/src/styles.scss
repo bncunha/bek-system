@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/colors.scss';
 
 html, body {
     height: 100%;
@@ -18,4 +19,10 @@ a[href]:hover {
 
 .grid {
     display: grid;
+}
+
+lib-tabela thead {
+    th {
+        background: $base-color !important;
+    }
 }

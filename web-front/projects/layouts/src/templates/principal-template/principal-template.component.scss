@@ -1,12 +1,15 @@
+$base-color: #1d4212;
+$base-dark: rgba($base-color, 0.88);
+
 .sidebar {
     height: 100%;
-    background-color: #353535
+    background-color: $base-color;
 }
 
 .header {
     padding-top: 1em;
     padding-bottom: 1em;
-    background-color: #505050
+    background-color: $base-dark;
 }
 
 .principal {
