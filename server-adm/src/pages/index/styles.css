@@ -1,0 +1,62 @@
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fbfbfb;
+}
+
+.grid {
+    display: grid;
+}
+
+.main-template {
+    grid-template-columns: 50% 50%;
+}
+
+.titulo-principal {
+    margin-bottom: 1em;
+}
+
+/* #################### CARD ################ */
+.wrapper-card {
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 1em 2em;
+    box-shadow: 1px 2px 4px 0px #bbbbbb;
+    margin: 1em;
+}
+
+button {
+    border: none;
+    padding: 0.4em 1.5em;
+    border-radius: 5px;
+    margin-right: 1em;
+    font-size: 1em;
+}
+
+button:hover {
+    filter: opacity(0.9);
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #dcdcdc !important;
+}
+
+button.on {
+    background-color: #48d046;
+    color: #fff;
+}
+
+button.off {
+    background-color: #d04646;
+    color: #fff;
+}
+
+.messages {
+    BACKGROUND: #000;
+    color: #fff;
+    margin: 1em;
+    padding: 1em;
+    max-height: 300px;
+    overflow: auto;
+    border-radius: 5px;
+}

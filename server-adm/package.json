@@ -1,0 +1,25 @@
+{
+  "name": "server-adm",
+  "version": "1.0.0",
+  "description": "server adm for npm process",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon -e js,html,css --watch * --exec electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bncunha/bek-system.git"
+  },
+  "author": "Bruno Cunha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bncunha/bek-system/issues"
+  },
+  "homepage": "https://github.com/bncunha/bek-system#readme",
+  "devDependencies": {
+    "electron": "^7.1.8",
+    "nodemon": "^2.0.2"
+  }
+}
