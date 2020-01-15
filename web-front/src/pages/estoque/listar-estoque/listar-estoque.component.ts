@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { BaseListCrud } from 'src/core/classes/base-list.crud';
 import { ProdutoControllerService } from '../controllers/produto-controller.service';
 import { Observable } from 'rxjs';
@@ -9,6 +9,9 @@ import { EstoqueFiltersForm } from '../forms/EstoqueFilters.form';
 import { EstoqueFilters } from '../forms/EstoqueFilters';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/models/Produto.model';
+import { ModalComponent } from 'projects/layouts/src/atoms/modal/modal.component';
+import { TabelaTamanhoQuantidadeComponent } from 'src/pages/tamanho/tabela-tamanho-quantidade/tabela-tamanho-quantidade.component';
+import { QuantidadeTamanho } from 'src/pages/tamanho/dto/QuantidadeTamanho';
 
 @Component({
   selector: 'app-listar-estoque',
@@ -16,6 +19,8 @@ import { Produto } from 'src/models/Produto.model';
   styleUrls: ['./listar-estoque.component.scss'],
 })
 export class ListarEstoqueComponent extends BaseListCrud implements OnInit {
+  @ViewChild('modalQtdTamanho') modalQtdTamanho: ModalComponent;
+  @ViewChild(TabelaTamanhoQuantidadeComponent) tabelaQtdTamanho: TabelaTamanhoQuantidadeComponent;
 
   tiposProduto: Observable<TipoProduto[]>;
   formFilters: FormGroup;
@@ -48,4 +53,8 @@ export class ListarEstoqueComponent extends BaseListCrud implements OnInit {
     ].filter(cor => cor.nome);
   }
 
+  visualizarTamanhos(item: Produto) {
+    this.modalQtdTamanho.open();
+    this.tabelaQtdTamanho.qtdTamanhos = item.produtoTamanho.map(pt => new QuantidadeTamanho(pt.tamanho.descricao, pt.quantidade));
+  }
 }

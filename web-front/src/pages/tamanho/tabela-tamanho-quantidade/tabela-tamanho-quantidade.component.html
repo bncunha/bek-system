@@ -1,0 +1,9 @@
+<lib-tabela>
+  <lib-tb-titulo> Tamanho </lib-tb-titulo>
+  <lib-tb-titulo> Quantidade </lib-tb-titulo>
+
+  <lib-tb-row *ngFor="let item of qtdTamanhos" [showButtons]="false">
+    <lib-tb-col> {{ item.tamanho }} </lib-tb-col>
+    <lib-tb-col> {{ item.quantidade }} </lib-tb-col>
+  </lib-tb-row>
+</lib-tabela>

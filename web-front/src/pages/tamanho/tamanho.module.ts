@@ -5,15 +5,16 @@ import { ListarTamanhosComponent } from './listar-tamanhos/listar-tamanhos.compo
 import { FormTamanhoComponent } from './form-tamanho/form-tamanho.component';
 import { TamanhoController } from './controllers/tamanho-controller.service';
 import { CoreModule } from 'src/core/core.module';
+import { TabelaTamanhoQuantidadeComponent } from './tabela-tamanho-quantidade/tabela-tamanho-quantidade.component';
 
 @NgModule({
-  declarations: [ListarTamanhosComponent, FormTamanhoComponent],
+  declarations: [ListarTamanhosComponent, FormTamanhoComponent, TabelaTamanhoQuantidadeComponent],
   imports: [
     CommonModule,
     CoreModule,
     TamanhoRoutingModule
   ], providers: [
     TamanhoController
-  ]
+  ], exports: [TabelaTamanhoQuantidadeComponent]
 })
 export class TamanhoModule { }

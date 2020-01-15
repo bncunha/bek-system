@@ -2,8 +2,10 @@
   <tr>
     <ng-template *ngFor="let col of colunas" [ngTemplateOutlet]="getTemplate(col)"></ng-template>
     <td>
-      <button class="btn" [routerLink]="link"> <i class="far fa-edit editar"></i> </button>
-      <button class="btn" (click)="deletar.emit()"> <i class="fas fa-trash deletar"></i> </button>
+      <ng-container *ngIf="showButtons">
+        <button class="btn" [routerLink]="link"> <i class="far fa-edit editar"></i> </button>
+        <button class="btn" (click)="deletar.emit()"> <i class="fas fa-trash deletar"></i> </button>
+      </ng-container>      
     </td>
   </tr>
 </ng-template>

@@ -64,16 +64,26 @@ export class ProdutoService extends DefaultService<Produto> {
         let filtros = ProdutoConverter.fromFilters(filters);
         let produtos = await super.getAll(filtros);
         produtos.map(p => p.quantidadeTotal = p.produtoTamanho.reduce((prev, cur) => prev += cur.quantidade, 0));
+        for (let p of produtos) 
+            await this.popularTamanhos(p);
         return produtos;
     }
 
     async findOneByID(id: number): Promise<Produto> {
         try {
             let produtoEncontrado = await super.findOneByID(id);
-            for (let pt of produtoEncontrado.produtoTamanho) {
+            return this.popularTamanhos(produtoEncontrado);
+        } catch(err) {
+            throw new Error(err);
+        }
+    }
+
+    private async popularTamanhos(produto: Produto) {
+        try {
+            for (let pt of produto.produtoTamanho) {
                 pt.tamanho = await this.tamanhoService.findOne(pt.idTamanho);
             }
-            return produtoEncontrado;
+            return produto;
         } catch(err) {
             throw new Error(err);
         }

@@ -12,6 +12,7 @@ export class TbRowComponent implements OnInit, AfterContentInit {
   @ContentChildren(TbColComponent) colunas: QueryList<TbColComponent>;
   @Output() deletar = new EventEmitter();
   @Input() link: string
+  @Input() showButtons: boolean = true;
 
   constructor(private tableService: TableService) { }
 

@@ -33,9 +33,9 @@ export class EstoqueForm extends Form<ProdutoDTO> {
     updateForm(form: FormGroup, model: any) {
         form.patchValue(model);
         form.patchValue({
-            cor: model.cor.idCorProduto,
-            cor2: model.cor2.idCorProduto,
-            cor3: model.cor3.idCorProduto,
+            cor: model.cor ? model.cor.idCorProduto : model.cor,
+            cor2: model.cor2 ? model.cor2.idCorProduto : model.cor2,
+            cor3: model.cor3 ? model.cor3.idCorProduto : model.cor3,
             tipoProduto: model.tipoProduto.idTipoProduto
         });
         this.createQtdTamanhoArray(model.produtoTamanho.map(pt => {

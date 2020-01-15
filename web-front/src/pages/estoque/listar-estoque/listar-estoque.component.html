@@ -1,4 +1,10 @@
 
+
+  
+<lib-modal #modalQtdTamanho>
+  <app-tabela-tamanho-quantidade></app-tabela-tamanho-quantidade>
+</lib-modal>
+
 <lib-page-content titulo="Lista de produtos" link="/estoque/add">
   <lib-filters [formGroup]="formFilters" (filtrar)="filtrar($event)">
     <lib-form-input label="ID Produto" formControlName="id" class="col"></lib-form-input>
@@ -19,7 +25,12 @@
       <lib-tb-col> {{ produto.idProduto }} </lib-tb-col>
       <lib-tb-col> {{ produto.nome }} </lib-tb-col>
       <lib-tb-col> {{ produto.descricao }} </lib-tb-col>
-      <lib-tb-col> {{ produto.quantidadeTotal }} </lib-tb-col>
+      <lib-tb-col>
+        <div class="d-flex justify-content-between align-items-center">
+          {{ produto.quantidadeTotal }}
+          <button class="btn ml-1" (click)="visualizarTamanhos(produto)"> <i class="far fa-eye"></i> </button>        
+        </div>
+      </lib-tb-col>
       <lib-tb-col> 
         <div class="grid color-grid" *ngFor="let cor of getCores(produto)">
           <span> {{ cor.nome }} </span> 

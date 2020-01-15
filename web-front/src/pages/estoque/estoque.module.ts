@@ -5,13 +5,15 @@ import { ListarEstoqueComponent } from './listar-estoque/listar-estoque.componen
 import { CoreModule } from 'src/core/core.module';
 import { FormEstoqueComponent } from './form-estoque/form-estoque.component';
 import { ProdutoControllerService } from './controllers/produto-controller.service';
+import { TamanhoModule } from '../tamanho/tamanho.module';
 
 @NgModule({
   declarations: [ListarEstoqueComponent, FormEstoqueComponent],
   imports: [
     CommonModule,
     EstoqueRoutingModule,
-    CoreModule
+    CoreModule,
+    TamanhoModule
   ], providers: [
     ProdutoControllerService
   ]
