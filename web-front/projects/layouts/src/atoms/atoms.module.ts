@@ -20,6 +20,9 @@ import { ColorBoxComponent } from './color-box/color-box.component';
     FormsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [
+    ModalComponent
+  ],
   exports: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent, SelectComponent, ModalComponent, ColorBoxComponent]
 })
 export class AtomsModule { }

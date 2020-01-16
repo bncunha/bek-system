@@ -1,4 +1,4 @@
-<div class="background" *ngIf="show"></div>
+<div class="background" style="top: 0" [class.d-none]="!show"></div>
 <div class="modal-content" [class.show]="show" [attr.aria-hidden]="show">
   <button (click)="close()" class="btn-close" title="Fechar"> <i class="fas fa-times"></i> </button>
   <ng-content></ng-content>  
