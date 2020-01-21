@@ -1,0 +1,24 @@
+<lib-page-content titulo="Lista de Entrada e Saída" link="/movimento/add">
+  <lib-tabela>
+    <lib-tb-titulo> # </lib-tb-titulo>
+    <lib-tb-titulo> Tipo Movimento </lib-tb-titulo>
+    <lib-tb-titulo> Data </lib-tb-titulo>
+    <lib-tb-titulo> Quantidade </lib-tb-titulo>
+    <lib-tb-titulo> </lib-tb-titulo>
+
+    <lib-tb-row *ngFor="let model of models | async" [showButtons]="false">
+      <lib-tb-col> {{ model.idMovimentoEstoque }}</lib-tb-col>
+      <lib-tb-col> 
+        <span class="text-success" [class.text-danger]="model.tipoMovimento == 'SAIDA'">
+          {{ model.tipoMovimento }}
+        </span>
+      </lib-tb-col>
+      <lib-tb-col> {{ model.dataMovimento | date: 'dd/MM/yyyy hh:mm' }}</lib-tb-col>
+      <lib-tb-col> {{ model.quantidadeTotal }}</lib-tb-col>
+      <lib-tb-col> 
+        <button class="btn" (click)="visualizarTamanhos(produto)"> <i class="far fa-eye"></i> </button>
+      </lib-tb-col>
+    </lib-tb-row>
+  </lib-tabela>
+
+</lib-page-content>

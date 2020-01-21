@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ]
 })
 export class CoreModule { }

@@ -1,13 +1,17 @@
 import { BaseController } from './base-controller';
 import { Observable } from 'rxjs';
 import { ModalResponseService } from 'projects/layouts/src/molecules/modal-response/modal-response.service';
-import { Injector } from '@angular/core';
+import { Injector, OnInit } from '@angular/core';
 
-export class BaseListCrud {
+export class BaseListCrud implements OnInit {
   models: Observable<any>;
   private modalService: ModalResponseService;
   constructor(private controller: BaseController, private injector: Injector) { 
     this.modalService = injector.get(ModalResponseService);
+  }
+
+  ngOnInit() {
+    this.getAll();
   }
 
   getAll(filters?: any) {

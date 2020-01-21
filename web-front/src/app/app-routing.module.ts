@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'estoque', pathMatch: 'full'},
+  { path: 'movimento', loadChildren: '../pages/movimento/movimento.module#MovimentoModule', data: {title: 'Entrada e saída'}},
   { path: 'estoque', loadChildren: '../pages/estoque/estoque.module#EstoqueModule', data: {title: 'Estoque'}},
   { path: 'categoria', loadChildren: '../pages/categoria/categoria.module#CategoriaModule', data: {title: 'Categoria'}},
   { path: 'tipo-produto', loadChildren: '../pages/tipo-produto/tipo-produto.module#TipoProdutoModule', data: {title: 'Tipo de produto'}},

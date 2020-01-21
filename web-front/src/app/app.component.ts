@@ -8,6 +8,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   menuSideBar = [
+    {icon: 'fas fa-exchange-alt', link: '/movimento', nome: 'Entrada e saída'},
     {icon: 'fas fa-boxes', link: '/estoque', nome: 'Estoque'},
     {icon: "fas fa-clipboard-list", link: "", nome: "Cadastros Básicos", showSub: false,submenus: [
       {icon: "", link: '/cor', nome: 'Cores'},
@@ -15,7 +16,6 @@ export class AppComponent implements OnInit {
       {icon: "", link: '/tipo-produto', nome: 'Tipo de produto'}
     ]}
   ]
-
   titlePage: string;
 
   constructor(
