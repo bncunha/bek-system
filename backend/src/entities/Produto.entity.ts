@@ -3,6 +3,7 @@ import { DefaultEntity } from "../defaults/DefaultEntity.class";
 import { CorProduto } from "./CorProduto.entity";
 import { TipoProduto } from "./TipoProduto.entity";
 import { ProdutoHasTamanho } from "./Produto_has_Tamanho.entity";
+import { MovimentoEstoque } from "./MovimentoEstoque.entity";
 
 @Entity()
 export class Produto extends DefaultEntity{
@@ -29,6 +30,9 @@ export class Produto extends DefaultEntity{
 
     @OneToMany(type => ProdutoHasTamanho, pt => pt.produto)
     produtoTamanho: ProdutoHasTamanho[];
+
+    // @OneToMany(type => MovimentoEstoque, me => me.produto)
+    movimentosEstoque: MovimentoEstoque[];
 
     quantidadeTotal: number = 0;
 

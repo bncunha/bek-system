@@ -21,6 +21,8 @@ import { TipoProduto } from 'src/entities/TipoProduto.entity';
     TipoProdutoService,
     TamanhoService,
     ProdutoHasTamanhoService
+  ], exports: [
+    TypeOrmModule
   ]
 })
 export class ProdutoModule {}

@@ -4,6 +4,7 @@ import { TamanhoModule } from './tamanho/tamanho.module';
 import { TipoProdutoModule } from './tipo-produto/tipo-produto.module';
 import { CorModule } from './cor/cor.module';
 import { ProdutoHasTamanhoModule } from './produto-has-tamanho/produto-has-tamanho.module';
+import { MovimentoEstoqueModule } from './movimento-estoque/movimento-estoque.module';
 
 @Module({
     imports: [
@@ -11,7 +12,8 @@ import { ProdutoHasTamanhoModule } from './produto-has-tamanho/produto-has-taman
         TamanhoModule,
         TipoProdutoModule,
         CorModule,
-        ProdutoHasTamanhoModule
+        ProdutoHasTamanhoModule,
+        MovimentoEstoqueModule
     ],
     exports: [
         ProdutoModule,

@@ -51,4 +51,15 @@ export class ProdutoHasTamanhoService extends DefaultService<ProdutoHasTamanho> 
             }
         })
     }
+
+    async movimentarQtdTamanho(idTamanho: number, idProduto: number, qtd: number, operacao: "SOMA" | "SUB"): Promise<ProdutoHasTamanho> {
+        let qtdTamanho = await this.findByTamanhoAndProduto(idTamanho, idProduto);
+        let qtdAtualizado: number;
+        if (operacao == "SOMA") {
+            qtdAtualizado = qtdTamanho.quantidade + qtd;
+        } else {
+            qtdAtualizado = qtdTamanho.quantidade - qtd;
+        }
+        return this.updateTamanhoToProduto(idTamanho, idProduto, qtdAtualizado);
+    }
 }
