@@ -4,6 +4,7 @@ import { MovimentoRoutingModule } from './movimento-routing.module';
 import { FormMovimentoComponent } from './form-movimento/form-movimento.component';
 import { ListarMovimentosComponent } from './listar-movimentos/listar-movimentos.component';
 import { CoreModule } from 'src/core/core.module';
+import { TamanhoModule } from '../tamanho/tamanho.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { CoreModule } from 'src/core/core.module';
   ],
   imports: [
     CoreModule,
-    MovimentoRoutingModule
+    MovimentoRoutingModule,
+    TamanhoModule
   ]
 })
 export class MovimentoModule { }

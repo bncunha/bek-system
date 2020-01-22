@@ -20,7 +20,7 @@ export class MovimentoEstoqueService extends DefaultService<MovimentoEstoque> {
         private produtoService: ProdutoService,
         private produtoTamanhoService: ProdutoHasTamanhoService
     ) {
-        super(repository);
+        super(repository, ['movimentoHasProdutoTamanho', 'movimentoHasProdutoTamanho.produtoTamanho', 'movimentoHasProdutoTamanho.produtoTamanho.produto', 'movimentoHasProdutoTamanho.produtoTamanho.tamanho']);
         this._repository = repository;
     }
 
