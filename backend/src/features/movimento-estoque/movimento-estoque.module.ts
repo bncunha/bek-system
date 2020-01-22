@@ -10,9 +10,11 @@ import { CorService } from '../cor/cor.service';
 import { TipoProdutoService } from '../tipo-produto/tipo-produto.service';
 import { TamanhoService } from '../tamanho/tamanho.service';
 import { ProdutoHasTamanhoService } from '../produto-has-tamanho/produto-has-tamanho.service';
+import { MovimentoHasProdutoTamanhoService } from '../movimento-has-produtotamanho/movimento-has-produtotamanho.service';
+import { MovimentoHasProdutotamanhoModule } from '../movimento-has-produtotamanho/movimento-has-produtotamanho.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MovimentoEstoque]), ProdutoModule],
+  imports: [TypeOrmModule.forFeature([MovimentoEstoque]), ProdutoModule, MovimentoHasProdutotamanhoModule],
   controllers: [MovimentoEstoqueController],
   providers: [
     MovimentoEstoqueService,
@@ -20,7 +22,8 @@ import { ProdutoHasTamanhoService } from '../produto-has-tamanho/produto-has-tam
     CorService,
     TipoProdutoService,
     TamanhoService,
-    ProdutoHasTamanhoService
+    ProdutoHasTamanhoService,
+    MovimentoHasProdutoTamanhoService
   ]
 })
 export class MovimentoEstoqueModule {}

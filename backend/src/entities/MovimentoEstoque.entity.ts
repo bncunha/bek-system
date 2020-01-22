@@ -1,6 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, ManyToMany, JoinTable } from "typeorm";
 import { DefaultEntity } from "../defaults/DefaultEntity.class";
 import { Produto } from "./Produto.entity";
+import { ProdutoHasTamanho } from "./Produto_has_Tamanho.entity";
+import { MovimentoHasProdutoTamanho } from "./Movimento_has_ProdutoTamanho.entity";
 
 @Entity()
 export class MovimentoEstoque extends DefaultEntity {
@@ -19,8 +21,8 @@ export class MovimentoEstoque extends DefaultEntity {
     @Column({nullable: false})
     quantidadeTotal: number;
 
-    @ManyToOne(type => Produto, produto => produto.movimentosEstoque)
-    produto: Produto
+    @OneToMany(type => MovimentoHasProdutoTamanho, mov => mov.movimentoEstoque)
+    movimentoHasProdutoTamanho: MovimentoHasProdutoTamanho[];
 
     getId() {
         return this.idMovimentoEstoque;

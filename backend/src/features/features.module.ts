@@ -5,6 +5,7 @@ import { TipoProdutoModule } from './tipo-produto/tipo-produto.module';
 import { CorModule } from './cor/cor.module';
 import { ProdutoHasTamanhoModule } from './produto-has-tamanho/produto-has-tamanho.module';
 import { MovimentoEstoqueModule } from './movimento-estoque/movimento-estoque.module';
+import { MovimentoHasProdutotamanhoModule } from './movimento-has-produtotamanho/movimento-has-produtotamanho.module';
 
 @Module({
     imports: [
@@ -13,7 +14,8 @@ import { MovimentoEstoqueModule } from './movimento-estoque/movimento-estoque.mo
         TipoProdutoModule,
         CorModule,
         ProdutoHasTamanhoModule,
-        MovimentoEstoqueModule
+        MovimentoEstoqueModule,
+        MovimentoHasProdutotamanhoModule
     ],
     exports: [
         ProdutoModule,

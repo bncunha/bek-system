@@ -3,6 +3,8 @@ import { MovimentoEstoqueDTO } from './dto/MovimentoEstoqueDTO';
 import { DefaultController } from 'src/defaults/DefaultController.class';
 import { MovimentoEstoque } from 'src/entities/MovimentoEstoque.entity';
 import { MovimentoEstoqueService } from './movimento-estoque.service';
+import { DefaultResponse } from 'src/defaults/DefaultResponse.class';
+import { ERROR_MESSAGE } from 'src/constants/ERROR_MESSAGE';
 
 @Controller('movimento-estoque')
 export class MovimentoEstoqueController extends DefaultController<MovimentoEstoque> {
@@ -15,7 +17,11 @@ export class MovimentoEstoqueController extends DefaultController<MovimentoEstoq
 
     @Post()
     async create(@Body() movimentoDTO: MovimentoEstoqueDTO) {
-        return super.create(await this._service.prepararMovimento(movimentoDTO));
+        try {
+            return new DefaultResponse().ok(await this._service.prepararMovimento(movimentoDTO))
+        } catch(err) {
+            return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
+        }
     }
     
     // @Put(':id')

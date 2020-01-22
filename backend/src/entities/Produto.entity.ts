@@ -31,9 +31,6 @@ export class Produto extends DefaultEntity{
     @OneToMany(type => ProdutoHasTamanho, pt => pt.produto)
     produtoTamanho: ProdutoHasTamanho[];
 
-    // @OneToMany(type => MovimentoEstoque, me => me.produto)
-    movimentosEstoque: MovimentoEstoque[];
-
     quantidadeTotal: number = 0;
 
     getId() {
