@@ -3,7 +3,7 @@
 </lib-modal>
 
 
-<lib-page-content [titulo]="pageTitle">
+<lib-page-content [ngClass]="{'saida': tipoMovimento == 'saida', 'entrada': tipoMovimento == 'entrada'}"class="saida" [titulo]="pageTitle">
   <lib-form [formGroup]="form" (salvar)="submit()">
       <lib-form-input class="col-6" label="Data" mascara="d0/M0/0000 Hh:m0" formControlName="data"></lib-form-input>
       <lib-form-input class="col-6" label="Tipo" formControlName="tipoMovimento"></lib-form-input>
