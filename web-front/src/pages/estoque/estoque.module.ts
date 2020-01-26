@@ -6,9 +6,10 @@ import { CoreModule } from 'src/core/core.module';
 import { FormEstoqueComponent } from './form-estoque/form-estoque.component';
 import { ProdutoControllerService } from './controllers/produto-controller.service';
 import { TamanhoModule } from '../tamanho/tamanho.module';
+import { TabelaEstoqueComponent } from './tabela-estoque/tabela-estoque.component';
 
 @NgModule({
-  declarations: [ListarEstoqueComponent, FormEstoqueComponent],
+  declarations: [ListarEstoqueComponent, FormEstoqueComponent, TabelaEstoqueComponent],
   imports: [
     CommonModule,
     EstoqueRoutingModule,
@@ -16,6 +17,6 @@ import { TamanhoModule } from '../tamanho/tamanho.module';
     TamanhoModule
   ], providers: [
     ProdutoControllerService
-  ]
+  ], exports: [TabelaEstoqueComponent]
 })
 export class EstoqueModule { }

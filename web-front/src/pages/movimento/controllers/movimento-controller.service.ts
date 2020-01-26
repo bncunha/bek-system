@@ -7,7 +7,7 @@ export class MovimentoController extends BaseController {
 
   constructor(
     service: MovimentoService
-  ) { 
+  ) {
     super(service);
   }
 }

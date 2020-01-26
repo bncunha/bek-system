@@ -45,14 +45,6 @@ export class ListarEstoqueComponent extends BaseListCrud implements OnInit {
     this.router.navigate(['/estoque'], {queryParams: filtros})
   }
 
-  getCores(produto: Produto) {
-    return [
-      {nome: produto.cor ? produto.cor.nome : null, hex: produto.cor ? produto.cor.hex : null },
-      {nome: produto.cor2 ? produto.cor2.nome : null, hex: produto.cor2 ? produto.cor2.hex : null },
-      {nome: produto.cor3 ? produto.cor3.nome : null, hex: produto.cor3 ? produto.cor3.hex : null }
-    ].filter(cor => cor.nome);
-  }
-
   visualizarTamanhos(item: Produto) {
     this.modalQtdTamanho.open();
     this.tabelaQtdTamanho.qtdTamanhos = item.produtoTamanho.map(pt => new QuantidadeTamanho(pt.tamanho.descricao, pt.quantidade));

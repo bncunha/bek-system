@@ -5,7 +5,8 @@ import { FormMovimentoComponent } from './form-movimento/form-movimento.componen
 import { ListarMovimentosComponent } from './listar-movimentos/listar-movimentos.component';
 import { CoreModule } from 'src/core/core.module';
 import { TamanhoModule } from '../tamanho/tamanho.module';
-
+import { EstoqueModule } from '../estoque/estoque.module';
+import { NgxMaskModule } from 'ngx-mask';
 @NgModule({
   declarations: [
     FormMovimentoComponent, 
@@ -14,7 +15,9 @@ import { TamanhoModule } from '../tamanho/tamanho.module';
   imports: [
     CoreModule,
     MovimentoRoutingModule,
-    TamanhoModule
+    EstoqueModule,
+    TamanhoModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class MovimentoModule { }

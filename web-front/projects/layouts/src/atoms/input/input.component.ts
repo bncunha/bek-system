@@ -11,11 +11,12 @@ export class InputComponent implements OnInit {
   @Output() blur = new EventEmitter();
   @Output() change = new EventEmitter();
   @Input() id: string;
+  @Input() mascara: string;
 
   value: FormControl = new FormControl();
   constructor() { }
 
   ngOnInit() {
   }
-  
+
 }

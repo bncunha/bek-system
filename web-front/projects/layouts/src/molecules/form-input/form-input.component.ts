@@ -17,17 +17,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } f
 export class FormInputComponent implements OnInit, ControlValueAccessor {
   @ViewChild(InputComponent) input: InputComponent;
   @Input() label: string;
-  
+  @Input() mascara: string;
+
   isFloating = false;
   idInput: string;
 
   valid: boolean;
+  disabled: boolean;
 
   onChange = (value: string) => {};
   onTouched = () => {};
 
   constructor(private inj: Injector) { }
-  
+
   ngOnInit() {
     this.gerarIdInput();
     this.input.value.valueChanges.subscribe(v => {
@@ -35,14 +37,15 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
       this.detectFloat();
     });
   }
-  
+
   detectFloat(event?: 'FOCUS' | 'BLUR') {
-    this.isFloating = event == 'FOCUS' || (this.input.value.value != null && this.input.value.value != undefined && this.input.value.value != '');
-    if (event == 'FOCUS') {
+    this.isFloating = event === 'FOCUS' ||
+    (this.input.value.value != null && this.input.value.value !== undefined && this.input.value.value !== '');
+    if (event === 'FOCUS') {
       this.onTouched();
     }
   }
-  
+
   gerarIdInput() {
     this.idInput = this.label ? this.label + new Date().getTime() : String(new Date().getTime());
   }
@@ -53,9 +56,9 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   }
 
   get erroMsg() {
-    return '1'
+    return '1';
   }
-  
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -65,7 +68,8 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error("Method not implemented.");
+    this.disabled = isDisabled;
+    isDisabled ? this.input.value.disable() : this.input.value.enable();
   }
 
 }

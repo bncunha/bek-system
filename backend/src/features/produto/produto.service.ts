@@ -22,7 +22,7 @@ export class ProdutoService extends DefaultService<Produto> {
         private tipoProdutoService: TipoProdutoService,
         private tamanhoService: TamanhoService,
         private produtoTamanhoService: ProdutoHasTamanhoService) {
-        super(repository, ['tipoProduto', 'produtoTamanho', 'cor', 'cor2', 'cor3']);
+        super(repository, ['tipoProduto', 'tipoProduto.tamanhos', 'produtoTamanho', 'cor', 'cor2', 'cor3']);
         this._repository = repository;
     }
 

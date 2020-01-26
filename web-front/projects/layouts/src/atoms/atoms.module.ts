@@ -12,13 +12,15 @@ import { BtnPerigoComponent } from './btn-perigo/btn-perigo.component';
 import { SelectComponent } from './select/select.component';
 import { ModalComponent } from './modal/modal.component';
 import { ColorBoxComponent } from './color-box/color-box.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [TituloUmComponent, CardComponent, TituloDoisComponent, BtnPrimarioComponent, InputComponent, LabelComponent, BtnSecundarioComponent, BtnPerigoComponent, SelectComponent, ModalComponent, ColorBoxComponent],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule
   ],
   entryComponents: [
     ModalComponent

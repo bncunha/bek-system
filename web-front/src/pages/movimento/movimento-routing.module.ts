@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ListarMovimentosComponent } from './listar-movimentos/listar-movimentos.component';
 import { FormMovimentoComponent } from './form-movimento/form-movimento.component';
+import { EstoqueModule } from '../estoque/estoque.module';
 
 const routes: Routes = [
   { path: '', component: ListarMovimentosComponent},
-  { path: 'add', component: FormMovimentoComponent},
-  { path: 'edit/:id', component: FormMovimentoComponent},
+  { path: 'add/:tipoMovimento', component: FormMovimentoComponent},
 ]
 
 @NgModule({
@@ -15,7 +15,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes)
   ], exports: [
-    RouterModule
+    RouterModule,
   ]
 })
 export class MovimentoRoutingModule { }

@@ -1,3 +1,39 @@
-<p>
-  form-movimento works!
-</p>
+<lib-modal #modalProdutos>
+    <app-tabela-estoque [produtos]="produtosEncontrados" [showButtons]="false" [simplificado]="true" [selecionarBtn]="true" (selecionar)="atualizarProduto($event)"></app-tabela-estoque>
+</lib-modal>
+
+
+<lib-page-content [titulo]="pageTitle">
+  <lib-form [formGroup]="form" (salvar)="submit()">
+      <lib-form-input class="col-6" label="Data" mascara="d0/M0/0000 Hh:m0" formControlName="data"></lib-form-input>
+      <lib-form-input class="col-6" label="Tipo" formControlName="tipoMovimento"></lib-form-input>
+      <lib-form-input class="col-4" label="Nome do produto" (keypress)="keyPress($event)" [(ngModel)]="produtoSearch" [ngModelOptions]="{standalone: true}"></lib-form-input>
+      <lib-btn-primario (click)="buscarProduto()"> Buscar Produto </lib-btn-primario>
+      <lib-btn-perigo class="ml-2" *ngIf="produtoSelecionado" (click)="limparProduto()"> <i class="fas fa-trash"></i> </lib-btn-perigo>
+      <fieldset class="col-12" *ngIf="produtoSelecionado">
+            <legend> Informações do produto </legend>
+            <p class="form-group">
+                <span> Nome: </span>
+                <span> {{ produtoSelecionado.nome }}</span> <br/>
+                <span> Tipo de produto: </span>
+                <span> {{ produtoSelecionado.tipoProduto.nome }}</span> <br/>
+                <span> Quantidade total: </span>
+                <span> {{ produtoSelecionado.quantidadeTotal }}</span> <br/>
+                <span> Cores: </span>
+                <span> {{ produtoSelecionado.cor1?.nome }} - {{ produtoSelecionado.cor2?.nome }} - {{ produtoSelecionado.cor3?.nome }}</span>
+            </p>
+      </fieldset>
+      <fieldset formArrayName="quantidadeTamanho" class="col-12" *ngIf="produtoSelecionado">
+            <legend> Quantidade movimentada </legend>
+            <div class="row">
+                <div [formGroupName]="i" class="form-group col-md-3" [formGroup]="control" *ngFor="let control of qtdTamanhoControls; let i = index">
+                    <label> 
+                        {{ getTamanhoById(control.value.idTamanho)?.descricao }} - Qtd Atual:
+                        {{ getQtdAtualByTamanho(control.value.idTamanho) }}
+                     </label>
+                    <lib-form-input formControlName="quantidade" class="d-inline-block w-50 ml-2"></lib-form-input>
+                </div>
+            </div>
+      </fieldset>
+  </lib-form>
+</lib-page-content>

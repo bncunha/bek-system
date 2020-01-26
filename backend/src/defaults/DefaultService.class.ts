@@ -1,14 +1,16 @@
-import { Repository } from "typeorm";
+import { Repository, Like } from "typeorm";
 import { ObjectUtils } from "src/utils/ObjectUtils.util";
 
 export class DefaultService<M> {
     populateEntities: string[];
-    
+    orderBy: any;
     constructor(
         private repository: Repository<M>,
-        populateEntities?: string[]
-    ){
+        populateEntities?: string[],
+        orderBy?: any,
+    ) {
         this.populateEntities = populateEntities;
+        this.orderBy = orderBy;
     }
 
     criar(model: M): Promise<M> {
@@ -17,7 +19,7 @@ export class DefaultService<M> {
 
     getAll(filters?): Promise<M[]> {
         const filtros = ObjectUtils.cleanNullValues(filters);
-        return this.repository.find({relations: this.populateEntities, where: filtros});
+        return this.repository.find({relations: this.populateEntities, where: filtros, order: this.orderBy });
     }
 
     async findOneByID(id: number): Promise<M> {

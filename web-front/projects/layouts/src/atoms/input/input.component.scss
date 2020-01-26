@@ -16,3 +16,7 @@ input.input-texto {
     outline: none;
     background-color: transparent;
 }
+
+input.input-texto:disabled {
+    background-color: #ececec;
+}

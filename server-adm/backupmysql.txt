@@ -1,0 +1,1 @@
+mysqldump -u {{usuario}} -p {{database}} > {{nomeArquivo}}.sql

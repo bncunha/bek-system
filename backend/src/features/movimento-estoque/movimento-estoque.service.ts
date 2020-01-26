@@ -18,9 +18,11 @@ export class MovimentoEstoqueService extends DefaultService<MovimentoEstoque> {
         @InjectRepository(MovimentoEstoque) repository: Repository<MovimentoEstoque>,
         private movimentoTamanhoService: MovimentoHasProdutoTamanhoService,
         private produtoService: ProdutoService,
-        private produtoTamanhoService: ProdutoHasTamanhoService
+        private produtoTamanhoService: ProdutoHasTamanhoService,
     ) {
-        super(repository, ['movimentoHasProdutoTamanho', 'movimentoHasProdutoTamanho.produtoTamanho', 'movimentoHasProdutoTamanho.produtoTamanho.produto', 'movimentoHasProdutoTamanho.produtoTamanho.tamanho']);
+        super(repository,
+            ['movimentoHasProdutoTamanho', 'movimentoHasProdutoTamanho.produtoTamanho', 'movimentoHasProdutoTamanho.produtoTamanho.produto', 'movimentoHasProdutoTamanho.produtoTamanho.tamanho'], 
+            {idMovimentoEstoque: 'DESC'});
         this._repository = repository;
     }
 
@@ -33,21 +35,21 @@ export class MovimentoEstoqueService extends DefaultService<MovimentoEstoque> {
 
         const movimentoSaved: MovimentoEstoque = await this._repository.save(movimento);
 
-        for (let qtdTam of movimentoDTO.quantidadeTamanho) {
-            let movimentoHasProdutoTamanho = new MovimentoHasProdutoTamanho();
+        for (const qtdTam of movimentoDTO.quantidadeTamanho) {
+            const movimentoHasProdutoTamanho = new MovimentoHasProdutoTamanho();
             try {
                 movimentoHasProdutoTamanho.idProdutoHasTamanho = await (await this.produtoTamanhoService.findByTamanhoAndProduto(qtdTam.idTamanho, movimentoDTO.idProduto)).idProdutoHasTamanho;
                 movimentoHasProdutoTamanho.idMovimentoEstoque = movimentoSaved.getId();
-                movimentoHasProdutoTamanho.quantidade = movimentoDTO.tipoMovimento == "SAIDA" ? -qtdTam.quantidade : qtdTam.quantidade;
+                movimentoHasProdutoTamanho.quantidade = movimentoDTO.tipoMovimento === 'SAIDA' ? -qtdTam.quantidade : qtdTam.quantidade;
                 this.movimentoTamanhoService.criar(movimentoHasProdutoTamanho);
             } catch(err) {
-                return err; 
+                return err;
             }
 
             await this.produtoTamanhoService.movimentarQtdTamanho(
-                qtdTam.idTamanho, 
-                movimentoDTO.idProduto, 
-                qtdTam.quantidade, 
+                qtdTam.idTamanho,
+                movimentoDTO.idProduto,
+                qtdTam.quantidade,
                 movimentoDTO.tipoMovimento == "SAIDA" ? "SUB" : "SOMA"
             )
         }

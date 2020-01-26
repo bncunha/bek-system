@@ -1,6 +1,7 @@
 import { Cor } from './Cor.model';
 
 export class Produto {
+    idProduto: number;
     nome: string;
     quantidade: number;
     tipoProduto: any;

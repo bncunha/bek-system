@@ -2,7 +2,11 @@
   <app-tabela-tamanho-quantidade></app-tabela-tamanho-quantidade>
 </lib-modal>
 
-<lib-page-content titulo="Lista de Entrada e Saída" link="/movimento/add">
+<lib-page-content titulo="Lista de Entrada e Saída">
+  <div class="mb-3">
+    <lib-btn-primario routerLink="/movimento/add/entrada"> Nova Entrada</lib-btn-primario>
+    <lib-btn-perigo routerLink="/movimento/add/saida" class="ml-3"> Nova Saída</lib-btn-perigo>
+  </div>
   <lib-tabela>
     <lib-tb-titulo> # </lib-tb-titulo>
     <lib-tb-titulo> Produto </lib-tb-titulo>

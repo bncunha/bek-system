@@ -14,43 +14,43 @@ export class BaseFormCrud {
     form: FormGroup;
     formFactory: Form<any>;
 
-    private route: ActivatedRoute;
-    private modalService: ModalResponseService;
-    private location: Location;
+    route: ActivatedRoute;
+    modalService: ModalResponseService;
+    location: Location;
 
     constructor(
         private controller: BaseController,
         private injector: Injector
-    ) { 
+    ) {
         this.route = injector.get(ActivatedRoute);
         this.modalService = injector.get(ModalResponseService);
         this.location = injector.get(Location);
     }
 
-    init(formFactory) {
-        this.id = this.route.snapshot.params['id'];
+    init(formFactory, initialValue?: any) {
+        this.id = this.route.snapshot.params.id;
         this.formFactory = formFactory;
-        this.form = formFactory.createForm({});
+        this.form = formFactory.createForm(initialValue ? initialValue : {});
         if (this.id) {
             this.controller.getOne(this.id).subscribe(r => this.formFactory.updateForm(this.form, r.data));
-            setTimeout(() => {
-                console.log(this.form)
-            }, 2000);
         }
+        setTimeout(() => {
+            console.log(this.form);
+        }, 2000);
     }
 
     async submit() {
         this.validateFormControls(this.form);
         console.log('Submit', this.form);
         const resp = this.id ? await this.controller.update(this.form, this.id) : await this.controller.insert(this.form);
-        if (resp.status == 200) {
+        if (resp.status === 200) {
             this.modalService.open(1, this.location.back.bind(this.location), 'Sucesso!', 'Operação realizada com sucesso!');
-        } else if (resp.status != RESPONSE_STATUS.FORMULARIO_INVALIDO) {
+        } else if (resp.status !== RESPONSE_STATUS.FORMULARIO_INVALIDO) {
             this.modalService.open(2, null, 'Erro!', resp.message);
         }
     }
 
-    private validateFormControls(form: FormGroup | FormArray) {
+    validateFormControls(form: FormGroup | FormArray) {
         Object.keys(form.controls).forEach(key => {
             if(form.controls[key] instanceof FormControl) {
                 // new FormControl().markAsTouched

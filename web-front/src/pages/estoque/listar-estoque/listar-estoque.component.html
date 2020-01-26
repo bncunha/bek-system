@@ -13,31 +13,5 @@
         bindValue="idTipoProduto" bindLabel="nome"></lib-form-select>
   </lib-filters>
 
-  <lib-tabela>
-    <lib-tb-titulo> ID </lib-tb-titulo>
-    <lib-tb-titulo> Nome </lib-tb-titulo>
-    <lib-tb-titulo> Descrição </lib-tb-titulo>
-    <lib-tb-titulo> Quantidade </lib-tb-titulo>
-    <lib-tb-titulo> Cores </lib-tb-titulo>
-    <lib-tb-titulo> Tipo de produto </lib-tb-titulo>
-
-    <lib-tb-row *ngFor="let produto of models | async" (deletar)="deletar(produto.idProduto)" [link]="'/estoque/edit/' + produto.idProduto">
-      <lib-tb-col> {{ produto.idProduto }} </lib-tb-col>
-      <lib-tb-col> {{ produto.nome }} </lib-tb-col>
-      <lib-tb-col> {{ produto.descricao }} </lib-tb-col>
-      <lib-tb-col>
-        <div class="d-flex justify-content-between align-items-center">
-          {{ produto.quantidadeTotal }}
-          <button class="btn ml-1" (click)="visualizarTamanhos(produto)"> <i class="far fa-eye"></i> </button>        
-        </div>
-      </lib-tb-col>
-      <lib-tb-col> 
-        <div class="grid color-grid" *ngFor="let cor of getCores(produto)">
-          <span> {{ cor.nome }} </span> 
-          <lib-color-box [cor]="cor.hex" [small]="true"></lib-color-box>
-        </div>
-      </lib-tb-col>
-      <lib-tb-col> {{ produto.tipoProduto?.nome }} </lib-tb-col>
-    </lib-tb-row>
-  </lib-tabela>
+  <app-tabela-estoque [produtos]="models | async" (visualizarTamanhos)="visualizarTamanhos($event)" (deletar)="deletar($event)"></app-tabela-estoque>
 </lib-page-content>
