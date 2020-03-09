@@ -1,3 +1,16 @@
-<p>
-  listar-clientes works!
-</p>
+<lib-page-content titulo="Lista de clientes" link="/cliente/add">
+  <lib-tabela>
+    <lib-tb-titulo> Nome </lib-tb-titulo>
+    <lib-tb-titulo> Tipo de Pessoa </lib-tb-titulo>
+    <lib-tb-titulo> Telefone Principal </lib-tb-titulo>
+    <lib-tb-titulo> E-mail Principal </lib-tb-titulo>
+
+    <lib-tb-row *ngFor="let m of models | async" [link]="'/cliente/edit/' + cliente.idCliente" (deletar)="deletar(cliente.idCliente)">
+      <lib-tb-col> {{ m.nome }}</lib-tb-col>
+      <lib-tb-col> {{ m.tipoPessoa }}</lib-tb-col>
+      <lib-tb-col> {{ m.telefone1 }}</lib-tb-col>
+      <lib-tb-col> {{ m.email1 }}</lib-tb-col>
+    </lib-tb-row>
+  </lib-tabela>
+
+</lib-page-content>
