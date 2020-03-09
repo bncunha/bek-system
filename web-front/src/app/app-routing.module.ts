@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'categoria', loadChildren: '../pages/categoria/categoria.module#CategoriaModule', data: {title: 'Categoria'}},
   { path: 'tipo-produto', loadChildren: '../pages/tipo-produto/tipo-produto.module#TipoProdutoModule', data: {title: 'Tipo de produto'}},
   { path: 'tamanho', loadChildren: '../pages/tamanho/tamanho.module#TamanhoModule', data: {title: 'Tamanhos'}},
-  { path: 'cor', loadChildren: '../pages/cor/cor.module#CorModule', data: {title: 'Cores'}}
+  { path: 'cor', loadChildren: '../pages/cor/cor.module#CorModule', data: {title: 'Cores'}},
+  { path: 'cliente', loadChildren: '../pages/cliente/cliente.module#ClienteModule', data: {title: 'Clientes'}}
 ]
 
 @NgModule({

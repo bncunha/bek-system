@@ -1,0 +1,17 @@
+<lib-page-content titulo="Adicionar novo cliente">
+  <lib-form [formGroup]="form" (salvar)="submit()">
+    <lib-form-input class="col-6" label="Nome" formControlName="nome"></lib-form-input>
+    <div class="col-6 form-inline">
+      <input type="radio" formControlName="tipoPessoa" id="PF" value="PF">
+      <label for="PF" class="mr-4"> Pessoa Física</label>
+      <input type="radio" formControlName="tipoPessoa" id="PJ" value="PJ">
+      <label for="PJ"> Pessoa Jurídica</label>
+    </div>
+    <lib-form-input class="col-4" label="Telefone 1" formControlName="telefone1"></lib-form-input>
+    <lib-form-input class="col-4" label="Telefone 2" formControlName="telefone2"></lib-form-input>
+    <lib-form-input class="col-4" label="Telefone 3" formControlName="telefone3"></lib-form-input>
+    <lib-form-input class="col-4" label="E-mail 1" formControlName="email1"></lib-form-input>
+    <lib-form-input class="col-4" label="E-mail 2" formControlName="email2"></lib-form-input>
+    <lib-form-input class="col-12" label="Endereço" formControlName="endereco"></lib-form-input>
+  </lib-form>
+</lib-page-content>

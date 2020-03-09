@@ -21,7 +21,7 @@ import { RESPONSE_STATUS } from 'src/core/constants/RESPONSE_STATUS.enum';
 export class FormMovimentoComponent extends BaseFormCrud implements OnInit {
   @ViewChild('modalProdutos') modalProdutos: ModalComponent;
 
-  tipoMovimento: TipoMovimento;
+  tipoMovimento: string;
   produtoSearch: string;
   produtosEncontrados = [];
   produtoSelecionado: Produto;
