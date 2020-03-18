@@ -80,8 +80,9 @@ export class ProdutoService extends DefaultService<Produto> {
 
     private async popularTamanhos(produto: Produto) {
         try {
+            const allTamanhos = await this.tamanhoService.findByIDs(produto.produtoTamanho.map(pt => pt.idTamanho));
             for (let pt of produto.produtoTamanho) {
-                pt.tamanho = await this.tamanhoService.findOne(pt.idTamanho);
+                pt.tamanho = allTamanhos.find(t => pt.idTamanho == t.idTamanho);
             }
             return produto;
         } catch(err) {
