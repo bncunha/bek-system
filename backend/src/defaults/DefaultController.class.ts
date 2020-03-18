@@ -30,7 +30,8 @@ export class DefaultController<M> {
     @Get()
     async listar(@Query() filters: any) {
         try {
-            return new DefaultResponse().ok(await this.service.getAll(filters));
+            const models = await this.service.getAll(filters);
+            return new DefaultResponse().ok(models);
         } catch(err) {
             return new DefaultResponse().error(err, err.errno ? ERROR_MESSAGE.getErrorMsg(err.errno) : err.message);
         }

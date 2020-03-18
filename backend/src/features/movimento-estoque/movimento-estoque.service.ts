@@ -36,22 +36,37 @@ export class MovimentoEstoqueService extends DefaultService<MovimentoEstoque> {
         const movimentoSaved: MovimentoEstoque = await this._repository.save(movimento);
 
         for (const qtdTam of movimentoDTO.quantidadeTamanho) {
-            const movimentoHasProdutoTamanho = new MovimentoHasProdutoTamanho();
             try {
-                movimentoHasProdutoTamanho.idProdutoHasTamanho = await (await this.produtoTamanhoService.findByTamanhoAndProduto(qtdTam.idTamanho, movimentoDTO.idProduto)).idProdutoHasTamanho;
-                movimentoHasProdutoTamanho.idMovimentoEstoque = movimentoSaved.getId();
-                movimentoHasProdutoTamanho.quantidade = movimentoDTO.tipoMovimento === 'SAIDA' ? -qtdTam.quantidade : qtdTam.quantidade;
-                this.movimentoTamanhoService.criar(movimentoHasProdutoTamanho);
+                if (qtdTam.quantidade) {
+                    const movimentoHasProdutoTamanho = new MovimentoHasProdutoTamanho();
+                    const movimentoHasProdutoTamanhoFinded = await this.produtoTamanhoService.findByTamanhoAndProduto(qtdTam.idTamanho, movimentoDTO.idProduto);
+                    if (movimentoHasProdutoTamanhoFinded) {
+                        movimentoHasProdutoTamanho.idProdutoHasTamanho = movimentoHasProdutoTamanhoFinded.idProdutoHasTamanho;
+                        movimentoHasProdutoTamanho.idMovimentoEstoque = movimentoSaved.getId();
+                        movimentoHasProdutoTamanho.quantidade = movimentoDTO.tipoMovimento === 'SAIDA' ? -qtdTam.quantidade : qtdTam.quantidade;
+                        await this.movimentoTamanhoService.criar(movimentoHasProdutoTamanho);
+                        await this.produtoTamanhoService.movimentarQtdTamanho(
+                            qtdTam.idTamanho,
+                            movimentoDTO.idProduto,
+                            qtdTam.quantidade,
+                            movimentoDTO.tipoMovimento == "SAIDA" ? "SUB" : "SOMA"
+                        )
+                    } else {
+                        const produtoTamanho = new ProdutoHasTamanho();
+                        produtoTamanho.idProduto = movimentoDTO.idProduto;
+                        produtoTamanho.idTamanho = qtdTam.idTamanho;
+                        produtoTamanho.quantidade = qtdTam.quantidade;
+                        const produtoTamanhoSaved = await this.produtoTamanhoService.criar(produtoTamanho);
+    
+                        movimentoHasProdutoTamanho.idProdutoHasTamanho = produtoTamanhoSaved.getId();
+                        movimentoHasProdutoTamanho.idMovimentoEstoque = movimentoSaved.getId();
+                        movimentoHasProdutoTamanho.quantidade = qtdTam.quantidade;
+                        await this.movimentoTamanhoService.criar(movimentoHasProdutoTamanho);
+                    }
+                } 
             } catch(err) {
                 return err;
             }
-
-            await this.produtoTamanhoService.movimentarQtdTamanho(
-                qtdTam.idTamanho,
-                movimentoDTO.idProduto,
-                qtdTam.quantidade,
-                movimentoDTO.tipoMovimento == "SAIDA" ? "SUB" : "SOMA"
-            )
         }
         return movimentoSaved;
     }
