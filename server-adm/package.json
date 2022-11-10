@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/bncunha/bek-system#readme",
   "devDependencies": {
-    "electron": "^7.1.8",
+    "electron": "^18.3.7",
     "nodemon": "^2.0.2"
   }
 }
